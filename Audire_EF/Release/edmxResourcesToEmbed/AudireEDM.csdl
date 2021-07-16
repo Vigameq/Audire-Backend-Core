@@ -1,0 +1,835 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Audire_dbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Audire_dbEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_country_master" EntityType="Audire_dbModel.tbl_country_master" />
+    <EntitySet Name="tbl_location_master" EntityType="Audire_dbModel.tbl_location_master" />
+    <EntitySet Name="tbl_Module_master" EntityType="Audire_dbModel.tbl_Module_master" />
+    <EntitySet Name="tbl_region_master" EntityType="Audire_dbModel.tbl_region_master" />
+    <EntitySet Name="tbl_line_master" EntityType="Audire_dbModel.tbl_line_master" />
+    <FunctionImport Name="sp_getProductListforEdit" ReturnType="Collection(Audire_dbModel.sp_getProductListforEdit_Result)">
+      <Parameter Name="p_user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="tbl_user_master" EntityType="Audire_dbModel.tbl_user_master" />
+    <EntitySet Name="Menu_List" EntityType="Audire_dbModel.Menu_List" />
+    <EntitySet Name="tbl_audit_plan" EntityType="Audire_dbModel.tbl_audit_plan" />
+    <EntitySet Name="tbl_audit_type" EntityType="Audire_dbModel.tbl_audit_type" />
+    <EntitySet Name="tbl_AuditResult" EntityType="Audire_dbModel.tbl_AuditResult" />
+    <EntitySet Name="tbl_distribution_list" EntityType="Audire_dbModel.tbl_distribution_list" />
+    <EntitySet Name="tbl_group_master" EntityType="Audire_dbModel.tbl_group_master" />
+    <EntitySet Name="tbl_group_members" EntityType="Audire_dbModel.tbl_group_members" />
+    <EntitySet Name="tbl_line_product_relationship" EntityType="Audire_dbModel.tbl_line_product_relationship" />
+    <EntitySet Name="tbl_local_answers" EntityType="Audire_dbModel.tbl_local_answers" />
+    <EntitySet Name="tbl_local_answers_bak" EntityType="Audire_dbModel.tbl_local_answers_bak" />
+    <EntitySet Name="tbl_local_question_master" EntityType="Audire_dbModel.tbl_local_question_master" />
+    <EntitySet Name="tbl_process_master" EntityType="Audire_dbModel.tbl_process_master" />
+    <EntitySet Name="tbl_product_master" EntityType="Audire_dbModel.tbl_product_master" />
+    <EntitySet Name="tbl_question_master" EntityType="Audire_dbModel.tbl_question_master" />
+    <EntitySet Name="tbl_section_master" EntityType="Audire_dbModel.tbl_section_master" />
+    <FunctionImport Name="sp_checkAuthentication">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="userID" Mode="In" Type="String" />
+      <Parameter Name="deviceID" Mode="In" Type="String" />
+      <Parameter Name="l_err_code" Mode="InOut" Type="Int32" />
+      <Parameter Name="l_err_message" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DelPart" ReturnType="Collection(Audire_dbModel.sp_DelPart_Result)">
+      <Parameter Name="p_line_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_product_id" Mode="In" Type="Int32" />
+      <Parameter Name="l_err_code" Mode="InOut" Type="Int32" />
+      <Parameter Name="l_err_message" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetAuditPlan" ReturnType="Collection(Audire_dbModel.sp_GetAuditPlan_Result)">
+      <Parameter Name="p_location_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_module_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_line_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getCountryId">
+      <Parameter Name="p_country_code" Mode="In" Type="String" />
+      <Parameter Name="p_country_name" Mode="In" Type="String" />
+      <Parameter Name="l_country_id" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetCountryList" ReturnType="Collection(Audire_dbModel.sp_GetCountryList_Result)">
+      <Parameter Name="p_region_id" Mode="In" Type="Int32" />
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getLineId">
+      <Parameter Name="p_region_name" Mode="In" Type="String" />
+      <Parameter Name="p_region_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_country_name" Mode="In" Type="String" />
+      <Parameter Name="p_country_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_location_name" Mode="In" Type="String" />
+      <Parameter Name="p_location_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_line_name" Mode="In" Type="String" />
+      <Parameter Name="l_line_id" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetLinesForLocation" ReturnType="Collection(Audire_dbModel.sp_GetLinesForLocation_Result)">
+      <Parameter Name="p_location_id" Mode="In" Type="Int32" />
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getLocationId">
+      <Parameter Name="p_location_code" Mode="In" Type="String" />
+      <Parameter Name="p_location_name" Mode="In" Type="String" />
+      <Parameter Name="l_location_id" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetLocationList" ReturnType="Collection(Audire_dbModel.sp_GetLocationList_Result)">
+      <Parameter Name="p_country_id" Mode="In" Type="Int32" />
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetLocations">
+      <Parameter Name="p_user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetMailDetailsForReport" ReturnType="Collection(Audire_dbModel.sp_GetMailDetailsForReport_Result)">
+      <Parameter Name="audit_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetModuleList" ReturnType="Collection(Audire_dbModel.sp_GetModuleList_Result)" />
+    <FunctionImport Name="sp_getOpenTasks" ReturnType="Collection(Audire_dbModel.sp_getOpenTasks_Result)">
+      <Parameter Name="p_region_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_country_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_location_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_line_id" Mode="In" Type="Int32" />
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+      <Parameter Name="auditType_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetProcessList" ReturnType="Collection(Audire_dbModel.sp_GetProcessList_Result)" />
+    <FunctionImport Name="sp_getProductId">
+      <Parameter Name="p_product_code" Mode="In" Type="String" />
+      <Parameter Name="p_product_name" Mode="In" Type="String" />
+      <Parameter Name="l_product_id" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetProductsForLine" ReturnType="Collection(Audire_dbModel.sp_GetProductsForLine_Result)">
+      <Parameter Name="p_line_id" Mode="In" Type="Int32" />
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getQuestionList" ReturnType="Collection(Audire_dbModel.sp_getQuestionList_Result)">
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+      <Parameter Name="auditType_id" Mode="In" Type="Int32" />
+      <Parameter Name="l_location_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getRegionId">
+      <Parameter Name="p_region_code" Mode="In" Type="String" />
+      <Parameter Name="p_region_name" Mode="In" Type="String" />
+      <Parameter Name="l_region_id" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetRegionList" ReturnType="Collection(Audire_dbModel.sp_GetRegionList_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsCountry">
+      <Parameter Name="p_country_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_country_code" Mode="In" Type="String" />
+      <Parameter Name="p_country_name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsLine">
+      <Parameter Name="p_line_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_region_name" Mode="In" Type="String" />
+      <Parameter Name="p_country_name" Mode="In" Type="String" />
+      <Parameter Name="p_location_name" Mode="In" Type="String" />
+      <Parameter Name="p_line_code" Mode="In" Type="String" />
+      <Parameter Name="p_line_name" Mode="In" Type="String" />
+      <Parameter Name="p_distribution_list" Mode="In" Type="String" />
+      <Parameter Name="l_err_code" Mode="InOut" Type="Int32" />
+      <Parameter Name="l_err_message" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsLineProduct">
+      <Parameter Name="p_line_product_rel_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_region_name" Mode="In" Type="String" />
+      <Parameter Name="p_country_name" Mode="In" Type="String" />
+      <Parameter Name="p_location_name" Mode="In" Type="String" />
+      <Parameter Name="p_line_name" Mode="In" Type="String" />
+      <Parameter Name="p_product_code" Mode="In" Type="String" />
+      <Parameter Name="p_start_date" Mode="In" Type="DateTime" />
+      <Parameter Name="p_end_date" Mode="In" Type="DateTime" />
+      <Parameter Name="l_err_code" Mode="InOut" Type="Int32" />
+      <Parameter Name="l_err_message" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsRegion">
+      <Parameter Name="p_region_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_region_code" Mode="In" Type="String" />
+      <Parameter Name="p_region_name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_saveProduct">
+      <Parameter Name="p_product_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_product_code" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UserLogin" ReturnType="Collection(Audire_dbModel.sp_UserLogin_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(String)">
+      <Parameter Name="Input" Mode="In" Type="String" />
+      <Parameter Name="Character" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="tbl_sub_section_master" EntityType="Audire_dbModel.tbl_sub_section_master" />
+    <FunctionImport Name="sp_getAuditType" ReturnType="Collection(Audire_dbModel.sp_getAuditType_Result)">
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getQuestionListForC" ReturnType="Collection(Audire_dbModel.sp_getQuestionListForC_Result)">
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+      <Parameter Name="auditType_id" Mode="In" Type="Int32" />
+      <Parameter Name="l_location_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getProcessEmpMapping" ReturnType="Collection(Audire_dbModel.sp_getProcessEmpMapping_Result)" />
+    <FunctionImport Name="sp_InsAuditPlan">
+      <Parameter Name="p_audit_plan_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_user_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_planned_date" Mode="In" Type="DateTime" />
+      <Parameter Name="p_planned_date_end" Mode="In" Type="DateTime" />
+      <Parameter Name="l_location_id" Mode="In" Type="Int32" />
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+      <Parameter Name="audit_type_id" Mode="In" Type="Int32" />
+      <Parameter Name="audit_note" Mode="In" Type="String" />
+      <Parameter Name="l_invite_to_list" Mode="InOut" Type="String" />
+      <Parameter Name="l_err_code" Mode="InOut" Type="Int32" />
+      <Parameter Name="l_err_message" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsQuestion">
+      <Parameter Name="question" Mode="In" Type="String" />
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+      <Parameter Name="auditType_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetMaxAuditId">
+      <Parameter Name="p_audit_id" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getUserList" ReturnType="Collection(Audire_dbModel.sp_getUserList_Result)" />
+    <FunctionImport Name="sp_getAuditScore" ReturnType="Collection(Audire_dbModel.sp_getAuditScore_Result)">
+      <Parameter Name="Module_id" Mode="In" Type="Int32" />
+      <Parameter Name="scoreby" Mode="In" Type="String" />
+      <Parameter Name="module_name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getDashboardDetail" ReturnType="Collection(Audire_dbModel.sp_getDashboardDetail_Result)">
+      <Parameter Name="Module_id" Mode="In" Type="Int32" />
+      <Parameter Name="module_name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAllTasks" ReturnType="Collection(Audire_dbModel.sp_getAllTasks_Result)" />
+    <FunctionImport Name="sp_getMonthlyScore" ReturnType="Collection(Audire_dbModel.sp_getMonthlyScore_Result)">
+      <Parameter Name="Module_id" Mode="In" Type="Int32" />
+      <Parameter Name="audit_type_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getdropdowndetail" ReturnType="Collection(Audire_dbModel.sp_getdropdowndetail_Result)">
+      <Parameter Name="audit_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getDashboardGraph" ReturnType="Collection(Audire_dbModel.sp_getDashboardGraph_Result)">
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getPendingAudits" ReturnType="Collection(Audire_dbModel.sp_getPendingAudits_Result)">
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+      <Parameter Name="Module_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAuditReport" ReturnType="Collection(Audire_dbModel.sp_getAuditReport_Result)">
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getCAPAReport" ReturnType="Collection(Audire_dbModel.sp_getCAPAReport_Result)">
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+      <Parameter Name="audittype_id" Mode="In" Type="Int32" />
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_saveConfirmAudit">
+      <Parameter Name="audit_id" Mode="In" Type="Int32" />
+      <Parameter Name="confirm" Mode="In" Type="String" />
+      <Parameter Name="confirm_by" Mode="In" Type="Int32" />
+      <Parameter Name="err_code" Mode="InOut" Type="Int32" />
+      <Parameter Name="err_msg" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="tbl_permissions" EntityType="Audire_dbModel.tbl_permissions" />
+    <EntitySet Name="tbl_role_master" EntityType="Audire_dbModel.tbl_role_master" />
+    <FunctionImport Name="sp_getRoleDetails" ReturnType="Collection(Audire_dbModel.sp_getRoleDetails_Result)" />
+    <FunctionImport Name="sp_GetPlanConsolidated" ReturnType="Collection(Audire_dbModel.sp_GetPlanConsolidated_Result)">
+      <Parameter Name="p_location_id" Mode="In" Type="Int32" />
+      <Parameter Name="p_module_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getConsolidatedAuditStatus" ReturnType="Collection(Audire_dbModel.sp_getConsolidatedAuditStatus_Result)">
+      <Parameter Name="location_id" Mode="In" Type="Int32" />
+      <Parameter Name="module_id" Mode="In" Type="Int32" />
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="tbl_country_master">
+    <Key>
+      <PropertyRef Name="country_id" />
+    </Key>
+    <Property Type="Int32" Name="country_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="region_id" />
+    <Property Type="String" Name="country_code" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="country_name" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_location_master">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Type="Int32" Name="location_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="country_id" />
+    <Property Type="Int32" Name="region_id" />
+    <Property Type="String" Name="location_code" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="location_name" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Time" Name="shift1_start_time" Precision="0" />
+    <Property Type="Time" Name="shift1_end_time" Precision="0" />
+    <Property Type="Time" Name="shift2_start_time" Precision="0" />
+    <Property Type="Time" Name="shift2_end_time" Precision="0" />
+    <Property Type="Time" Name="shift3_start_time" Precision="0" />
+    <Property Type="Time" Name="shift3_end_time" Precision="0" />
+    <Property Type="Int32" Name="no_of_shifts" />
+    <Property Type="String" Name="timezone_code" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="timezone_desc" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="default_language" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_Module_master">
+    <Key>
+      <PropertyRef Name="module_id" />
+    </Key>
+    <Property Type="Int32" Name="module_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="module" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="status" />
+  </EntityType>
+  <EntityType Name="tbl_region_master">
+    <Key>
+      <PropertyRef Name="region_id" />
+    </Key>
+    <Property Type="Int32" Name="region_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="region_code" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="region_name" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_line_master">
+    <Key>
+      <PropertyRef Name="line_id" />
+    </Key>
+    <Property Type="Int32" Name="line_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="Int32" Name="country_id" />
+    <Property Type="Int32" Name="region_id" />
+    <Property Type="String" Name="line_code" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="line_name" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="start_date" Precision="0" />
+    <Property Type="DateTime" Name="end_date" Precision="0" />
+    <Property Type="String" Name="distribution_list" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="module_id" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_user_master">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Type="Int32" Name="user_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="username" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="passwd" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="emp_full_name" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="display_name_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="email_id" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="String" Name="role" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="global_admin_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="site_admin_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="start_date" Precision="0" />
+    <Property Type="DateTime" Name="end_date" Precision="0" />
+    <Property Type="Int32" Name="role_id" />
+    <Property Type="Int32" Name="region_id" />
+    <Property Type="Int32" Name="country_id" />
+    <Property Type="String" Name="emp_first_name" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="emp_last_name" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Admin_Type" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="process_id" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="module_id" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="reporting_manager" Type="Int32" />
+    <Property Name="profile_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Menu_List">
+    <Key>
+      <PropertyRef Name="M_ID" />
+    </Key>
+    <Property Type="Int32" Name="M_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="M_P_ID" />
+    <Property Type="String" Name="M_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CONTROLLER_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ACTION_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_audit_plan">
+    <Key>
+      <PropertyRef Name="audit_plan_id" />
+    </Key>
+    <Property Type="Int32" Name="audit_plan_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="to_be_audited_by_user_id" />
+    <Property Type="DateTime" Name="planned_date" Precision="3" />
+    <Property Type="Int32" Name="shift_no" />
+    <Property Type="Int32" Name="line_product_rel_id" />
+    <Property Type="String" Name="notification_sent_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="to_be_audited_by_group_id" />
+    <Property Type="DateTime" Name="planned_date_end" Precision="3" />
+    <Property Type="Int32" Name="line_id" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="Int32" Name="module_id" />
+    <Property Type="Int32" Name="Audit_type_id" />
+    <Property Name="audit_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_audit_type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Audit_Type" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="module_id" />
+    <Property Type="Int32" Name="Status" />
+    <Property Type="String" Name="Color_code" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Parts" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="display_seq" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_AuditResult">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="audit_id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="audit_id" Nullable="false" />
+    <Property Type="Int32" Name="question_id" />
+    <Property Type="String" Name="answer" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="audit_comment" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="assigned_To" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="audit_images" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="module_id" />
+    <Property Type="Int32" Name="region_id" />
+    <Property Type="Int32" Name="country_id" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="Int32" Name="line_id" />
+    <Property Type="Int32" Name="product_id" />
+    <Property Type="Int32" Name="shift_no" />
+    <Property Type="Int32" Name="audit_performed_by" />
+    <Property Type="String" Name="audit_performed_on" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="audit_performed_date" Precision="3" />
+    <Property Type="String" Name="review_status" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="review_comment" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="review_images" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="reviewed_by" />
+    <Property Type="String" Name="reviewed_on" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="reviewed_date" Precision="3" />
+    <Property Type="Int32" Name="AuditType_id" />
+    <Property Name="Part_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Auditor_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Audit_number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="root_cause" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Corrective_Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Preventive_Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="confirm_comment" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="confirmed_by" Type="Int32" />
+    <Property Name="confirmed_date" Type="DateTime" Precision="3" />
+    <Property Name="IsCompleted" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_distribution_list">
+    <Key>
+      <PropertyRef Name="dist_list_id" />
+    </Key>
+    <Property Type="Int32" Name="dist_list_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="String" Name="list_type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="email_list" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="send_notification_to_owner" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_group_master">
+    <Key>
+      <PropertyRef Name="group_id" />
+      <PropertyRef Name="group_name" />
+    </Key>
+    <Property Type="Int32" Name="group_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="String" Name="group_name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_group_members">
+    <Key>
+      <PropertyRef Name="group_member_id" />
+    </Key>
+    <Property Type="Int32" Name="group_member_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="Int32" Name="group_id" />
+    <Property Type="Int32" Name="user_id" />
+  </EntityType>
+  <EntityType Name="tbl_line_product_relationship">
+    <Key>
+      <PropertyRef Name="line_product_rel_id" />
+    </Key>
+    <Property Type="Int32" Name="line_product_rel_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="product_id" />
+    <Property Type="Int32" Name="line_id" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="Int32" Name="country_id" />
+    <Property Type="Int32" Name="region_id" />
+    <Property Type="Int32" Name="no_of_shifts" />
+    <Property Type="DateTime" Name="start_date" Precision="0" />
+    <Property Type="DateTime" Name="end_date" Precision="0" />
+    <Property Type="String" Name="notification_sent_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_local_answers">
+    <Key>
+      <PropertyRef Name="loc_answer_id" />
+    </Key>
+    <Property Type="Int32" Name="loc_answer_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="audit_id" />
+    <Property Type="Int32" Name="audit_plan_id" />
+    <Property Type="Int32" Name="audited_by_user_id" />
+    <Property Type="Int32" Name="line_product_rel_id" Nullable="false" />
+    <Property Type="DateTime" Name="audit_date" Precision="3" />
+    <Property Type="Int32" Name="Shift_No" />
+    <Property Type="Int32" Name="question_id" />
+    <Property Type="Int32" Name="answer" />
+    <Property Type="String" Name="remarks" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="image_file_name" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="review_user_id" />
+    <Property Type="DateTime" Name="review_closed_on" Precision="3" />
+    <Property Type="Int32" Name="review_closed_status" />
+    <Property Type="String" Name="review_comments" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="review_image_file_name" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="notification_sent_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="region_id" />
+    <Property Type="Int32" Name="country_id" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="Int32" Name="section_id" />
+    <Property Type="Int32" Name="line_id" />
+  </EntityType>
+  <EntityType Name="tbl_local_answers_bak">
+    <Key>
+      <PropertyRef Name="loc_answer_id" />
+      <PropertyRef Name="line_product_rel_id" />
+    </Key>
+    <Property Type="Int32" Name="loc_answer_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="audit_id" />
+    <Property Type="Int32" Name="audit_plan_id" />
+    <Property Type="Int32" Name="audited_by_user_id" />
+    <Property Type="Int32" Name="line_product_rel_id" Nullable="false" />
+    <Property Type="DateTime" Name="audit_date" Precision="3" />
+    <Property Type="Int32" Name="Shift_No" />
+    <Property Type="Int32" Name="question_id" />
+    <Property Type="Int32" Name="answer" />
+    <Property Type="String" Name="remarks" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="image_file_name" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="review_user_id" />
+    <Property Type="DateTime" Name="review_closed_on" Precision="3" />
+    <Property Type="Int32" Name="review_closed_status" />
+    <Property Type="String" Name="review_comments" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="review_image_file_name" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="notification_sent_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="region_id" />
+    <Property Type="Int32" Name="country_id" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="Int32" Name="section_id" />
+    <Property Type="Int32" Name="line_id" />
+  </EntityType>
+  <EntityType Name="tbl_local_question_master">
+    <Key>
+      <PropertyRef Name="local_question_id" />
+    </Key>
+    <Property Type="Int32" Name="local_question_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="location_id" />
+    <Property Type="Int32" Name="section_id" />
+    <Property Type="String" Name="local_question" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="local_help_text" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="display_sequence" />
+    <Property Type="String" Name="how_to_check" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="na_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="max_no_of_pics_allowed" />
+  </EntityType>
+  <EntityType Name="tbl_process_master">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Process" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_product_master">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Type="Int32" Name="product_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="product_code" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="product_name" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_question_master">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="question_id" Nullable="false" />
+    <Property Type="Int32" Name="section_id" />
+    <Property Type="String" Name="question" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="module_id" />
+    <Property Type="Int32" Name="Audit_type_id" />
+    <Property Type="Int32" Name="sub_section_id" />
+    <Property Type="String" Name="section_name" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="sub_section_name" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="help_text" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="clause" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_section_master">
+    <Key>
+      <PropertyRef Name="section_id" />
+    </Key>
+    <Property Type="Int32" Name="section_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="section_name" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="display_sequence" />
+  </EntityType>
+  <ComplexType Name="sp_DelPart_Result">
+    <Property Type="Int32" Name="err_code" Nullable="true" />
+    <Property Type="String" Name="err_message" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAuditPlan_Result">
+    <Property Type="Int32" Name="audit_plan_id" Nullable="false" />
+    <Property Type="String" Name="planned_date" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="planned_date_end" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="Audit_status" Nullable="true" />
+    <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="line_name" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Emp_name" Nullable="true" MaxLength="1000" />
+    <Property Type="Double" Name="Audit_Score" Nullable="true" />
+    <Property Type="String" Name="module" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Audit_Type" Nullable="true" />
+    <Property Type="Int32" Name="to_be_audited_by_user_id" Nullable="true" />
+    <Property Type="Int32" Name="Audit_type_id" Nullable="true" />
+    <Property Type="String" Name="color_code" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="module_id" Nullable="false" />
+    <Property Type="String" Name="audit_note" Nullable="true" />
+    <Property Type="String" Name="AuditType_Code" Nullable="false" MaxLength="2" />
+  </ComplexType>
+  <ComplexType Name="sp_GetCountryList_Result">
+    <Property Type="Int32" Name="country_id" Nullable="false" />
+    <Property Type="String" Name="country_code" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="country_name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_GetLinesForLocation_Result">
+    <Property Type="Int32" Name="line_id" Nullable="false" />
+    <Property Type="String" Name="line_name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_GetLocationList_Result">
+    <Property Type="Int32" Name="location_id" Nullable="false" />
+    <Property Type="String" Name="location_code" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_GetMailDetailsForReport_Result">
+    <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="line_name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="EmailId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetModuleList_Result">
+    <Property Type="Int32" Name="module_id" Nullable="false" />
+    <Property Type="String" Name="module" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_getOpenTasks_Result">
+    <Property Type="Int32" Name="answer_id" Nullable="false" />
+    <Property Type="Int32" Name="audit_id" Nullable="false" />
+    <Property Type="Int32" Name="question_id" Nullable="true" />
+    <Property Type="String" Name="answer" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="audit_comment" Nullable="true" />
+    <Property Type="String" Name="audit_images" Nullable="true" />
+    <Property Type="String" Name="question" Nullable="true" />
+    <Property Type="String" Name="review_comment" Nullable="true" />
+    <Property Type="String" Name="clause" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="root_cause" Nullable="true" />
+    <Property Type="String" Name="Corrective_Action" Nullable="true" />
+    <Property Type="String" Name="Preventive_Action" Nullable="true" />
+    <Property Type="String" Name="Audit_number" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="assigned_To" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetProcessList_Result">
+    <Property Type="Int32" Name="Process_id" Nullable="false" />
+    <Property Type="String" Name="process_name" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetProductsForLine_Result">
+    <Property Type="Int32" Name="product_id" Nullable="false" />
+    <Property Type="String" Name="product_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="line_id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getQuestionList_Result">
+    <Property Type="Int32" Name="question_id" Nullable="false" />
+    <Property Type="String" Name="question" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="Audit_Type" Nullable="true" />
+    <Property Type="Int32" Name="audit_type_id" Nullable="true" />
+    <Property Type="String" Name="section_name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="sub_section_name" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetRegionList_Result">
+    <Property Type="Int32" Name="region_id" Nullable="false" />
+    <Property Type="String" Name="region_code" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="region_name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_UserLogin_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="role" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="role_id" Nullable="true" />
+    <Property Type="String" Name="email_id" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="emp_full_name" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="display_name_flag" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="global_admin_flag" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="site_admin_flag" Nullable="true" MaxLength="1" />
+    <Property Type="Int32" Name="region_id" Nullable="true" />
+    <Property Type="String" Name="region_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="country_id" Nullable="true" />
+    <Property Type="String" Name="country_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="location_id" Nullable="false" />
+    <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="template" Nullable="true" />
+    <Property Type="Int32" Name="err_code" Nullable="true" />
+    <Property Type="String" Name="err_message" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="tbl_sub_section_master">
+    <Key>
+      <PropertyRef Name="sub_section_id" />
+    </Key>
+    <Property Type="Int32" Name="sub_section_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="sub_section_name" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="sp_getAuditType_Result">
+    <Property Type="Int32" Name="AuditType_id" Nullable="false" />
+    <Property Type="String" Name="AuditType" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getQuestionListForC_Result">
+    <Property Type="Int32" Name="question_id" Nullable="false" />
+    <Property Type="String" Name="question" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="section_name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="sub_section_name" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getProductListforEdit_Result">
+    <Property Type="Int32" Name="region_id" Nullable="false" />
+    <Property Type="String" Name="region_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="country_id" Nullable="false" />
+    <Property Type="String" Name="country_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="location_id" Nullable="false" />
+    <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="line_id" Nullable="false" />
+    <Property Type="String" Name="line_name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="line_code" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="product_name" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getProcessEmpMapping_Result">
+    <Property Type="Int32" Name="process_id" Nullable="false" />
+    <Property Type="String" Name="process" Nullable="false" />
+    <Property Type="String" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="emp_full_name" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getUserList_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="username" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="passwd" Nullable="true" />
+    <Property Type="String" Name="emp_full_name" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="display_name_flag" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="email_id" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="location_id" Nullable="true" />
+    <Property Type="String" Name="role" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="global_admin_flag" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="site_admin_flag" Nullable="true" MaxLength="1" />
+    <Property Type="DateTime" Name="start_date" Nullable="true" />
+    <Property Type="DateTime" Name="end_date" Nullable="true" />
+    <Property Type="Int32" Name="role_id" Nullable="true" />
+    <Property Type="Int32" Name="region_id" Nullable="true" />
+    <Property Type="Int32" Name="country_id" Nullable="true" />
+    <Property Type="String" Name="emp_first_name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="emp_last_name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Admin_Type" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="process_id" Nullable="true" />
+    <Property Type="String" Name="module_id" Nullable="true" />
+    <Property Type="String" Name="module" Nullable="true" />
+    <Property Type="String" Name="process" Nullable="true" />
+    <Property Type="String" Name="location" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="reporting_manager" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getAuditScore_Result">
+    <Property Type="String" Name="Audit_Type" Nullable="false" />
+    <Property Type="Int32" Name="Audit_Type_id" Nullable="false" />
+    <Property Type="String" Name="score" Nullable="false" />
+    <Property Type="String" Name="last_date" Nullable="false" />
+    <Property Type="String" Name="location" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getDashboardDetail_Result">
+    <Property Type="Int32" Name="open_NC" Nullable="false" />
+    <Property Type="Int32" Name="closed_NC" Nullable="false" />
+    <Property Type="Int32" Name="monthly_score" Nullable="false" />
+    <Property Type="Int32" Name="tot_audit" Nullable="false" />
+    <Property Type="Int32" Name="pending" Nullable="false" />
+    <Property Type="Int32" Name="quarterly_score" Nullable="false" />
+    <Property Type="Int32" Name="halfyearly_score" Nullable="false" />
+    <Property Type="Int32" Name="yearly_score" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllTasks_Result">
+    <Property Type="Int32" Name="audit_id" Nullable="false" />
+    <Property Type="String" Name="Audit_Type" Nullable="true" />
+    <Property Type="String" Name="module" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="audit_performed_date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_getMonthlyScore_Result">
+    <Property Type="String" Name="month" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="score" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getdropdowndetail_Result">
+    <Property Type="Int32" Name="region_id" Nullable="true" />
+    <Property Type="Int32" Name="country_id" Nullable="true" />
+    <Property Type="Int32" Name="location_id" Nullable="true" />
+    <Property Type="Int32" Name="module_id" Nullable="true" />
+    <Property Type="Int32" Name="AuditType_id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getDashboardGraph_Result">
+    <Property Type="String" Name="audit_date" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="audit_count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getPendingAudits_Result">
+    <Property Type="DateTime" Name="planned_date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="week_num" Nullable="true" />
+    <Property Type="Int32" Name="location_id" Nullable="true" />
+    <Property Type="String" Name="location" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Audit_type_id" Nullable="true" />
+    <Property Type="String" Name="Audit_Type" Nullable="true" />
+    <Property Type="Int32" Name="color_code" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getAuditReport_Result">
+    <Property Type="Int32" Name="audit_id" Nullable="false" />
+    <Property Type="String" Name="Audit_number" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="audit_performed_by" Nullable="true" />
+    <Property Type="Int32" Name="location_id" Nullable="true" />
+    <Property Type="String" Name="audit_performed_date" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="emp_full_name" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_getCAPAReport_Result">
+    <Property Type="String" Name="Audit_number" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="audit_id" Nullable="false" />
+    <Property Type="String" Name="confirm_comment" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="report_date" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Containment" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="pa_date" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Final_Status" Nullable="false" MaxLength="7" />
+  </ComplexType>
+  <EntityType Name="tbl_permissions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Permission" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_role_master">
+    <Key>
+      <PropertyRef Name="Role_id" />
+    </Key>
+    <Property Name="Role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Role_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Role_Access" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="sp_getRoleDetails_Result">
+    <Property Type="Int32" Name="Role_id" Nullable="false" />
+    <Property Type="String" Name="Role_name" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Role_Access" Nullable="true" />
+    <Property Type="String" Name="users" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetPlanConsolidated_Result">
+    <Property Type="Int32" Name="TotalPlan" Nullable="true" />
+    <Property Type="Int32" Name="LMTotalPlan" Nullable="true" />
+    <Property Type="Double" Name="TotalPlanRate" Nullable="true" />
+    <Property Type="Int32" Name="TotalPlanCompleted" Nullable="true" />
+    <Property Type="Int32" Name="LMTotalCompleted" Nullable="true" />
+    <Property Type="Double" Name="TotalCompletedRate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getConsolidatedAuditStatus_Result">
+    <Property Type="String" Name="module" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Audit_Type" Nullable="true" />
+    <Property Type="DateTime" Name="audit_performed_date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="emp_full_name" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="Audit_number" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="audit_id" Nullable="false" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="11" />
+  </ComplexType>
+</Schema>
