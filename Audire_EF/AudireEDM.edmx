@@ -1,0 +1,2318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Audire_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Menu_List">
+          <Key>
+            <PropertyRef Name="M_ID" />
+          </Key>
+          <Property Name="M_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="M_P_ID" Type="int" />
+          <Property Name="M_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="CONTROLLER_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="ACTION_NAME" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_audit_plan">
+          <Key>
+            <PropertyRef Name="audit_plan_id" />
+          </Key>
+          <Property Name="audit_plan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="to_be_audited_by_user_id" Type="int" />
+          <Property Name="planned_date" Type="datetime" />
+          <Property Name="shift_no" Type="int" />
+          <Property Name="line_product_rel_id" Type="int" />
+          <Property Name="notification_sent_flag" Type="varchar" MaxLength="1" />
+          <Property Name="to_be_audited_by_group_id" Type="int" />
+          <Property Name="planned_date_end" Type="datetime" />
+          <Property Name="line_id" Type="int" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="module_id" Type="int" />
+          <Property Name="Audit_type_id" Type="int" />
+          <Property Name="audit_note" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_audit_type">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Audit_Type" Type="varchar(max)" />
+          <Property Name="module_id" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Color_code" Type="varchar" MaxLength="100" />
+          <Property Name="Parts" Type="varchar(max)" />
+          <Property Name="display_seq" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Audire_db.dbo.tbl_AuditResult' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_AuditResult">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="audit_id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="audit_id" Type="int" Nullable="false" />
+          <Property Name="question_id" Type="int" />
+          <Property Name="answer" Type="varchar" MaxLength="10" />
+          <Property Name="audit_comment" Type="varchar(max)" />
+          <Property Name="assigned_To" Type="varchar" MaxLength="100" />
+          <Property Name="audit_images" Type="varchar(max)" />
+          <Property Name="module_id" Type="int" />
+          <Property Name="region_id" Type="int" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="line_id" Type="int" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="shift_no" Type="int" />
+          <Property Name="audit_performed_by" Type="int" />
+          <Property Name="audit_performed_on" Type="varchar(max)" />
+          <Property Name="audit_performed_date" Type="datetime" />
+          <Property Name="review_status" Type="varchar" MaxLength="100" />
+          <Property Name="review_comment" Type="varchar(max)" />
+          <Property Name="review_images" Type="varchar(max)" />
+          <Property Name="reviewed_by" Type="int" />
+          <Property Name="reviewed_on" Type="varchar(max)" />
+          <Property Name="reviewed_date" Type="datetime" />
+          <Property Name="AuditType_id" Type="int" />
+          <Property Name="Part_name" Type="varchar(max)" />
+          <Property Name="Auditor_Comment" Type="varchar(max)" />
+          <Property Name="Audit_number" Type="varchar" MaxLength="100" />
+          <Property Name="root_cause" Type="varchar(max)" />
+          <Property Name="Corrective_Action" Type="varchar(max)" />
+          <Property Name="Preventive_Action" Type="varchar(max)" />
+          <Property Name="confirm_comment" Type="varchar" MaxLength="10" />
+          <Property Name="confirmed_by" Type="int" />
+          <Property Name="confirmed_date" Type="datetime" />
+          <Property Name="IsCompleted" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tbl_country_master">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Name="country_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="region_id" Type="int" />
+          <Property Name="country_code" Type="varchar" MaxLength="10" />
+          <Property Name="country_name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_distribution_list">
+          <Key>
+            <PropertyRef Name="dist_list_id" />
+          </Key>
+          <Property Name="dist_list_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="list_type" Type="varchar" MaxLength="50" />
+          <Property Name="email_list" Type="varchar(max)" />
+          <Property Name="send_notification_to_owner" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Audire_db.dbo.tbl_group_master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_group_master">
+          <Key>
+            <PropertyRef Name="group_id" />
+            <PropertyRef Name="group_name" />
+          </Key>
+          <Property Name="group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="group_name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Audire_db.dbo.tbl_group_members' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_group_members">
+          <Key>
+            <PropertyRef Name="group_member_id" />
+          </Key>
+          <Property Name="group_member_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_line_master">
+          <Key>
+            <PropertyRef Name="line_id" />
+          </Key>
+          <Property Name="line_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="region_id" Type="int" />
+          <Property Name="line_code" Type="varchar" MaxLength="100" />
+          <Property Name="line_name" Type="varchar" MaxLength="100" />
+          <Property Name="start_date" Type="date" />
+          <Property Name="end_date" Type="date" />
+          <Property Name="distribution_list" Type="varchar(max)" />
+          <Property Name="module_id" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_line_product_relationship">
+          <Key>
+            <PropertyRef Name="line_product_rel_id" />
+          </Key>
+          <Property Name="line_product_rel_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="line_id" Type="int" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="region_id" Type="int" />
+          <Property Name="no_of_shifts" Type="int" />
+          <Property Name="start_date" Type="date" />
+          <Property Name="end_date" Type="date" />
+          <Property Name="notification_sent_flag" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tbl_local_answers">
+          <Key>
+            <PropertyRef Name="loc_answer_id" />
+          </Key>
+          <Property Name="loc_answer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="audit_id" Type="int" />
+          <Property Name="audit_plan_id" Type="int" />
+          <Property Name="audited_by_user_id" Type="int" />
+          <Property Name="line_product_rel_id" Type="int" Nullable="false" />
+          <Property Name="audit_date" Type="datetime" />
+          <Property Name="Shift_No" Type="int" />
+          <Property Name="question_id" Type="int" />
+          <Property Name="answer" Type="int" />
+          <Property Name="remarks" Type="nvarchar" MaxLength="1000" />
+          <Property Name="image_file_name" Type="varchar" MaxLength="1000" />
+          <Property Name="review_user_id" Type="int" />
+          <Property Name="review_closed_on" Type="datetime" />
+          <Property Name="review_closed_status" Type="int" />
+          <Property Name="review_comments" Type="nvarchar" MaxLength="1000" />
+          <Property Name="review_image_file_name" Type="varchar" MaxLength="1000" />
+          <Property Name="notification_sent_flag" Type="varchar" MaxLength="1" />
+          <Property Name="region_id" Type="int" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="section_id" Type="int" />
+          <Property Name="line_id" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Audire_db.dbo.tbl_local_answers_bak' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_local_answers_bak">
+          <Key>
+            <PropertyRef Name="loc_answer_id" />
+            <PropertyRef Name="line_product_rel_id" />
+          </Key>
+          <Property Name="loc_answer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="audit_id" Type="int" />
+          <Property Name="audit_plan_id" Type="int" />
+          <Property Name="audited_by_user_id" Type="int" />
+          <Property Name="line_product_rel_id" Type="int" Nullable="false" />
+          <Property Name="audit_date" Type="datetime" />
+          <Property Name="Shift_No" Type="int" />
+          <Property Name="question_id" Type="int" />
+          <Property Name="answer" Type="int" />
+          <Property Name="remarks" Type="varchar" MaxLength="1000" />
+          <Property Name="image_file_name" Type="varchar" MaxLength="1000" />
+          <Property Name="review_user_id" Type="int" />
+          <Property Name="review_closed_on" Type="datetime" />
+          <Property Name="review_closed_status" Type="int" />
+          <Property Name="review_comments" Type="varchar" MaxLength="1000" />
+          <Property Name="review_image_file_name" Type="varchar" MaxLength="1000" />
+          <Property Name="notification_sent_flag" Type="varchar" MaxLength="1" />
+          <Property Name="region_id" Type="int" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="section_id" Type="int" />
+          <Property Name="line_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_local_question_master">
+          <Key>
+            <PropertyRef Name="local_question_id" />
+          </Key>
+          <Property Name="local_question_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="section_id" Type="int" />
+          <Property Name="local_question" Type="varchar" MaxLength="1000" />
+          <Property Name="local_help_text" Type="varchar" MaxLength="1000" />
+          <Property Name="display_sequence" Type="int" />
+          <Property Name="how_to_check" Type="varchar" MaxLength="1000" />
+          <Property Name="na_flag" Type="varchar" MaxLength="1" />
+          <Property Name="max_no_of_pics_allowed" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_location_master">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="region_id" Type="int" />
+          <Property Name="location_code" Type="varchar" MaxLength="10" />
+          <Property Name="location_name" Type="varchar" MaxLength="100" />
+          <Property Name="shift1_start_time" Type="time" Precision="0" />
+          <Property Name="shift1_end_time" Type="time" Precision="0" />
+          <Property Name="shift2_start_time" Type="time" Precision="0" />
+          <Property Name="shift2_end_time" Type="time" Precision="0" />
+          <Property Name="shift3_start_time" Type="time" Precision="0" />
+          <Property Name="shift3_end_time" Type="time" Precision="0" />
+          <Property Name="no_of_shifts" Type="int" />
+          <Property Name="timezone_code" Type="varchar" MaxLength="100" />
+          <Property Name="timezone_desc" Type="varchar" MaxLength="100" />
+          <Property Name="default_language" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tbl_Module_master">
+          <Key>
+            <PropertyRef Name="module_id" />
+          </Key>
+          <Property Name="module_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="module" Type="varchar" MaxLength="100" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Audire_db.dbo.tbl_permissions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_permissions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Permission" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Audire_db.dbo.tbl_process_master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_process_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Process" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_product_master">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_code" Type="varchar" MaxLength="100" />
+          <Property Name="product_name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_question_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question_id" Type="int" Nullable="false" />
+          <Property Name="section_id" Type="int" />
+          <Property Name="question" Type="varchar(max)" />
+          <Property Name="module_id" Type="int" />
+          <Property Name="Audit_type_id" Type="int" />
+          <Property Name="sub_section_id" Type="int" />
+          <Property Name="sub_section_name" Type="varchar(max)" />
+          <Property Name="section_name" Type="varchar(max)" />
+          <Property Name="help_text" Type="varchar(max)" />
+          <Property Name="clause" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_region_master">
+          <Key>
+            <PropertyRef Name="region_id" />
+          </Key>
+          <Property Name="region_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="region_code" Type="varchar" MaxLength="10" />
+          <Property Name="region_name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_role_master">
+          <Key>
+            <PropertyRef Name="Role_id" />
+          </Key>
+          <Property Name="Role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_name" Type="varchar" MaxLength="200" />
+          <Property Name="Role_Access" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_section_master">
+          <Key>
+            <PropertyRef Name="section_id" />
+          </Key>
+          <Property Name="section_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="section_name" Type="varchar" MaxLength="100" />
+          <Property Name="display_sequence" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Audire_db.dbo.tbl_sub_section_master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_sub_section_master">
+          <Key>
+            <PropertyRef Name="sub_section_id" />
+          </Key>
+          <Property Name="sub_section_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sub_section_name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_user_master">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="100" />
+          <Property Name="passwd" Type="varchar(max)" />
+          <Property Name="emp_full_name" Type="varchar" MaxLength="1000" />
+          <Property Name="display_name_flag" Type="varchar" MaxLength="1" />
+          <Property Name="email_id" Type="varchar" MaxLength="100" />
+          <Property Name="location_id" Type="int" />
+          <Property Name="role" Type="varchar" MaxLength="100" />
+          <Property Name="global_admin_flag" Type="varchar" MaxLength="1" />
+          <Property Name="site_admin_flag" Type="varchar" MaxLength="1" />
+          <Property Name="start_date" Type="date" />
+          <Property Name="end_date" Type="date" />
+          <Property Name="role_id" Type="int" />
+          <Property Name="region_id" Type="int" />
+          <Property Name="country_id" Type="int" />
+          <Property Name="emp_first_name" Type="varchar" MaxLength="100" />
+          <Property Name="emp_last_name" Type="varchar" MaxLength="100" />
+          <Property Name="Admin_Type" Type="varchar" MaxLength="100" />
+          <Property Name="process_id" Type="varchar(max)" />
+          <Property Name="module_id" Type="varchar(max)" />
+          <Property Name="reporting_manager" Type="int" />
+          <Property Name="profile_pic" Type="varchar(max)" />
+        </EntityType>
+        <Function Name="GetAuditIDByPlanDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="planned_date" Type="datetime" Mode="In" />
+          <Parameter Name="planned_date_end" Type="datetime" Mode="In" />
+          <Parameter Name="line_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAuditScorebyAudit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="p_audit_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getAuditStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="p_audit_plan_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getEmployeeName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+          <Parameter Name="p_user_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetMaxAuditId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_audit_id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="getPartsForLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+          <Parameter Name="p_line_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_checkAuthentication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar(max)" Mode="In" />
+          <Parameter Name="userID" Type="varchar(max)" Mode="In" />
+          <Parameter Name="deviceID" Type="varchar(max)" Mode="In" />
+          <Parameter Name="l_err_code" Type="int" Mode="InOut" />
+          <Parameter Name="l_err_message" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="sp_DelPart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_line_id" Type="int" Mode="In" />
+          <Parameter Name="p_product_id" Type="int" Mode="In" />
+          <Parameter Name="l_err_code" Type="int" Mode="InOut" />
+          <Parameter Name="l_err_message" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_getAllTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAuditPlan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_location_id" Type="int" Mode="In" />
+          <Parameter Name="p_module_id" Type="int" Mode="In" />
+          <Parameter Name="p_line_id" Type="int" Mode="In" />
+          <Parameter Name="p_user_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getAuditReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="module_id" Type="int" Mode="In" />
+          <Parameter Name="user_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getAuditScore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Module_id" Type="int" Mode="In" />
+          <Parameter Name="scoreby" Type="varchar" Mode="In" />
+          <Parameter Name="module_name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_getAuditType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="module_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getCAPAReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="module_id" Type="int" Mode="In" />
+          <Parameter Name="audittype_id" Type="int" Mode="In" />
+          <Parameter Name="user_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getConsolidatedAuditStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="location_id" Type="int" Mode="In" />
+          <Parameter Name="module_id" Type="int" Mode="In" />
+          <Parameter Name="user_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getCountryId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_country_code" Type="varchar" Mode="In" />
+          <Parameter Name="p_country_name" Type="varchar" Mode="In" />
+          <Parameter Name="l_country_id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_GetCountryList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_region_id" Type="int" Mode="In" />
+          <Parameter Name="module_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getDashboardDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Module_id" Type="int" Mode="In" />
+          <Parameter Name="module_name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_getDashboardGraph" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="module_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getdropdowndetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="audit_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getLineId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_region_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_region_id" Type="int" Mode="In" />
+          <Parameter Name="p_country_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_country_id" Type="int" Mode="In" />
+          <Parameter Name="p_location_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_location_id" Type="int" Mode="In" />
+          <Parameter Name="p_line_name" Type="varchar" Mode="In" />
+          <Parameter Name="l_line_id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_GetLinesForLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_location_id" Type="int" Mode="In" />
+          <Parameter Name="module_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getLocationId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_location_code" Type="varchar" Mode="In" />
+          <Parameter Name="p_location_name" Type="varchar" Mode="In" />
+          <Parameter Name="l_location_id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_GetLocationList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_country_id" Type="int" Mode="In" />
+          <Parameter Name="module_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetLocations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_user_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetMailDetailsForReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="audit_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetModuleList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getOpenTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_region_id" Type="int" Mode="In" />
+          <Parameter Name="p_country_id" Type="int" Mode="In" />
+          <Parameter Name="p_location_id" Type="int" Mode="In" />
+          <Parameter Name="p_line_id" Type="int" Mode="In" />
+          <Parameter Name="module_id" Type="int" Mode="In" />
+          <Parameter Name="auditType_id" Type="int" Mode="In" />
+          <Parameter Name="p_user_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getPendingAudits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="Module_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetPlanConsolidated" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_location_id" Type="int" Mode="In" />
+          <Parameter Name="p_module_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getProcessEmpMapping" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetProcessList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getProductId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_product_code" Type="varchar" Mode="In" />
+          <Parameter Name="p_product_name" Type="varchar" Mode="In" />
+          <Parameter Name="l_product_id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_getProductListforEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_user_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetProductsForLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_line_id" Type="int" Mode="In" />
+          <Parameter Name="module_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getQuestionList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="module_id" Type="int" Mode="In" />
+          <Parameter Name="auditType_id" Type="int" Mode="In" />
+          <Parameter Name="l_location_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getQuestionListForC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="module_id" Type="int" Mode="In" />
+          <Parameter Name="auditType_id" Type="int" Mode="In" />
+          <Parameter Name="l_location_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getRegionId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_region_code" Type="varchar" Mode="In" />
+          <Parameter Name="p_region_name" Type="varchar" Mode="In" />
+          <Parameter Name="l_region_id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_GetRegionList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="module_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getRoleDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getUserList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_InsAuditPlan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_audit_plan_id" Type="int" Mode="In" />
+          <Parameter Name="p_user_id" Type="int" Mode="In" />
+          <Parameter Name="p_planned_date" Type="date" Mode="In" />
+          <Parameter Name="p_planned_date_end" Type="date" Mode="In" />
+          <Parameter Name="l_location_id" Type="int" Mode="In" />
+          <Parameter Name="module_id" Type="int" Mode="In" />
+          <Parameter Name="audit_type_id" Type="int" Mode="In" />
+          <Parameter Name="audit_note" Type="varchar(max)" Mode="In" />
+          <Parameter Name="l_invite_to_list" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="l_err_code" Type="int" Mode="InOut" />
+          <Parameter Name="l_err_message" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_InsCountry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_country_id" Type="int" Mode="In" />
+          <Parameter Name="p_country_code" Type="varchar" Mode="In" />
+          <Parameter Name="p_country_name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_InsLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_line_id" Type="int" Mode="In" />
+          <Parameter Name="p_region_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_country_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_location_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_line_code" Type="varchar" Mode="In" />
+          <Parameter Name="p_line_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_distribution_list" Type="varchar(max)" Mode="In" />
+          <Parameter Name="l_err_code" Type="int" Mode="InOut" />
+          <Parameter Name="l_err_message" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_InsLineProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_line_product_rel_id" Type="int" Mode="In" />
+          <Parameter Name="p_region_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_country_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_location_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_line_name" Type="varchar" Mode="In" />
+          <Parameter Name="p_product_code" Type="varchar" Mode="In" />
+          <Parameter Name="p_start_date" Type="date" Mode="In" />
+          <Parameter Name="p_end_date" Type="date" Mode="In" />
+          <Parameter Name="l_err_code" Type="int" Mode="InOut" />
+          <Parameter Name="l_err_message" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_InsQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="question" Type="varchar(max)" Mode="In" />
+          <Parameter Name="module_id" Type="int" Mode="In" />
+          <Parameter Name="auditType_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsRegion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_region_id" Type="int" Mode="In" />
+          <Parameter Name="p_region_code" Type="varchar" Mode="In" />
+          <Parameter Name="p_region_name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_saveConfirmAudit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="audit_id" Type="int" Mode="In" />
+          <Parameter Name="confirm" Type="varchar" Mode="In" />
+          <Parameter Name="confirm_by" Type="int" Mode="In" />
+          <Parameter Name="err_code" Type="int" Mode="InOut" />
+          <Parameter Name="err_msg" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="sp_saveProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_product_id" Type="int" Mode="In" />
+          <Parameter Name="p_product_code" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_UserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Input" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Character" Type="char" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Item" Type="nvarchar" MaxLength="1000" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="Audire_dbModelStoreContainer">
+          <EntitySet Name="Menu_List" EntityType="Self.Menu_List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_audit_plan" EntityType="Self.tbl_audit_plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_audit_type" EntityType="Self.tbl_audit_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_country_master" EntityType="Self.tbl_country_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_distribution_list" EntityType="Self.tbl_distribution_list" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_line_master" EntityType="Self.tbl_line_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_line_product_relationship" EntityType="Self.tbl_line_product_relationship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_local_answers" EntityType="Self.tbl_local_answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_local_question_master" EntityType="Self.tbl_local_question_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_location_master" EntityType="Self.tbl_location_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Module_master" EntityType="Self.tbl_Module_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_product_master" EntityType="Self.tbl_product_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_question_master" EntityType="Self.tbl_question_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_region_master" EntityType="Self.tbl_region_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_role_master" EntityType="Self.tbl_role_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_section_master" EntityType="Self.tbl_section_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_user_master" EntityType="Self.tbl_user_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AuditResult" EntityType="Self.tbl_AuditResult" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tbl_AuditResult].[id] AS [id], 
+[tbl_AuditResult].[audit_id] AS [audit_id], 
+[tbl_AuditResult].[question_id] AS [question_id], 
+[tbl_AuditResult].[answer] AS [answer], 
+[tbl_AuditResult].[audit_comment] AS [audit_comment], 
+[tbl_AuditResult].[assigned_To] AS [assigned_To], 
+[tbl_AuditResult].[audit_images] AS [audit_images], 
+[tbl_AuditResult].[module_id] AS [module_id], 
+[tbl_AuditResult].[region_id] AS [region_id], 
+[tbl_AuditResult].[country_id] AS [country_id], 
+[tbl_AuditResult].[location_id] AS [location_id], 
+[tbl_AuditResult].[line_id] AS [line_id], 
+[tbl_AuditResult].[product_id] AS [product_id], 
+[tbl_AuditResult].[shift_no] AS [shift_no], 
+[tbl_AuditResult].[audit_performed_by] AS [audit_performed_by], 
+[tbl_AuditResult].[audit_performed_on] AS [audit_performed_on], 
+[tbl_AuditResult].[audit_performed_date] AS [audit_performed_date], 
+[tbl_AuditResult].[review_status] AS [review_status], 
+[tbl_AuditResult].[review_comment] AS [review_comment], 
+[tbl_AuditResult].[review_images] AS [review_images], 
+[tbl_AuditResult].[reviewed_by] AS [reviewed_by], 
+[tbl_AuditResult].[reviewed_on] AS [reviewed_on], 
+[tbl_AuditResult].[reviewed_date] AS [reviewed_date], 
+[tbl_AuditResult].[AuditType_id] AS [AuditType_id], 
+[tbl_AuditResult].[Part_name] AS [Part_name], 
+[tbl_AuditResult].[Auditor_Comment] AS [Auditor_Comment], 
+[tbl_AuditResult].[Audit_number] AS [Audit_number], 
+[tbl_AuditResult].[root_cause] AS [root_cause], 
+[tbl_AuditResult].[Corrective_Action] AS [Corrective_Action], 
+[tbl_AuditResult].[Preventive_Action] AS [Preventive_Action], 
+[tbl_AuditResult].[confirm_comment] AS [confirm_comment], 
+[tbl_AuditResult].[confirmed_by] AS [confirmed_by], 
+[tbl_AuditResult].[confirmed_date] AS [confirmed_date], 
+[tbl_AuditResult].[IsCompleted] AS [IsCompleted]
+FROM [dbo].[tbl_AuditResult] AS [tbl_AuditResult]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_group_master" EntityType="Self.tbl_group_master" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tbl_group_master].[group_id] AS [group_id], 
+[tbl_group_master].[location_id] AS [location_id], 
+[tbl_group_master].[group_name] AS [group_name]
+FROM [dbo].[tbl_group_master] AS [tbl_group_master]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_group_members" EntityType="Self.tbl_group_members" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tbl_group_members].[group_member_id] AS [group_member_id], 
+[tbl_group_members].[location_id] AS [location_id], 
+[tbl_group_members].[group_id] AS [group_id], 
+[tbl_group_members].[user_id] AS [user_id]
+FROM [dbo].[tbl_group_members] AS [tbl_group_members]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_local_answers_bak" EntityType="Self.tbl_local_answers_bak" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tbl_local_answers_bak].[loc_answer_id] AS [loc_answer_id], 
+[tbl_local_answers_bak].[audit_id] AS [audit_id], 
+[tbl_local_answers_bak].[audit_plan_id] AS [audit_plan_id], 
+[tbl_local_answers_bak].[audited_by_user_id] AS [audited_by_user_id], 
+[tbl_local_answers_bak].[line_product_rel_id] AS [line_product_rel_id], 
+[tbl_local_answers_bak].[audit_date] AS [audit_date], 
+[tbl_local_answers_bak].[Shift_No] AS [Shift_No], 
+[tbl_local_answers_bak].[question_id] AS [question_id], 
+[tbl_local_answers_bak].[answer] AS [answer], 
+[tbl_local_answers_bak].[remarks] AS [remarks], 
+[tbl_local_answers_bak].[image_file_name] AS [image_file_name], 
+[tbl_local_answers_bak].[review_user_id] AS [review_user_id], 
+[tbl_local_answers_bak].[review_closed_on] AS [review_closed_on], 
+[tbl_local_answers_bak].[review_closed_status] AS [review_closed_status], 
+[tbl_local_answers_bak].[review_comments] AS [review_comments], 
+[tbl_local_answers_bak].[review_image_file_name] AS [review_image_file_name], 
+[tbl_local_answers_bak].[notification_sent_flag] AS [notification_sent_flag], 
+[tbl_local_answers_bak].[region_id] AS [region_id], 
+[tbl_local_answers_bak].[country_id] AS [country_id], 
+[tbl_local_answers_bak].[location_id] AS [location_id], 
+[tbl_local_answers_bak].[section_id] AS [section_id], 
+[tbl_local_answers_bak].[line_id] AS [line_id]
+FROM [dbo].[tbl_local_answers_bak] AS [tbl_local_answers_bak]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_permissions" EntityType="Self.tbl_permissions" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tbl_permissions].[ID] AS [ID], 
+[tbl_permissions].[Permission] AS [Permission]
+FROM [dbo].[tbl_permissions] AS [tbl_permissions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_process_master" EntityType="Self.tbl_process_master" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tbl_process_master].[id] AS [id], 
+[tbl_process_master].[Process] AS [Process]
+FROM [dbo].[tbl_process_master] AS [tbl_process_master]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_sub_section_master" EntityType="Self.tbl_sub_section_master" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tbl_sub_section_master].[sub_section_id] AS [sub_section_id], 
+[tbl_sub_section_master].[sub_section_name] AS [sub_section_name]
+FROM [dbo].[tbl_sub_section_master] AS [tbl_sub_section_master]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Audire_dbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Audire_dbEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_country_master" EntityType="Audire_dbModel.tbl_country_master" />
+          <EntitySet Name="tbl_location_master" EntityType="Audire_dbModel.tbl_location_master" />
+          <EntitySet Name="tbl_Module_master" EntityType="Audire_dbModel.tbl_Module_master" />
+          <EntitySet Name="tbl_region_master" EntityType="Audire_dbModel.tbl_region_master" />
+          <EntitySet Name="tbl_line_master" EntityType="Audire_dbModel.tbl_line_master" />
+          <FunctionImport Name="sp_getProductListforEdit" ReturnType="Collection(Audire_dbModel.sp_getProductListforEdit_Result)">
+          <Parameter Name="p_user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tbl_user_master" EntityType="Audire_dbModel.tbl_user_master" />
+          <EntitySet Name="Menu_List" EntityType="Audire_dbModel.Menu_List" />
+          <EntitySet Name="tbl_audit_plan" EntityType="Audire_dbModel.tbl_audit_plan" />
+          <EntitySet Name="tbl_audit_type" EntityType="Audire_dbModel.tbl_audit_type" />
+          <EntitySet Name="tbl_AuditResult" EntityType="Audire_dbModel.tbl_AuditResult" />
+          <EntitySet Name="tbl_distribution_list" EntityType="Audire_dbModel.tbl_distribution_list" />
+          <EntitySet Name="tbl_group_master" EntityType="Audire_dbModel.tbl_group_master" />
+          <EntitySet Name="tbl_group_members" EntityType="Audire_dbModel.tbl_group_members" />
+          <EntitySet Name="tbl_line_product_relationship" EntityType="Audire_dbModel.tbl_line_product_relationship" />
+          <EntitySet Name="tbl_local_answers" EntityType="Audire_dbModel.tbl_local_answers" />
+          <EntitySet Name="tbl_local_answers_bak" EntityType="Audire_dbModel.tbl_local_answers_bak" />
+          <EntitySet Name="tbl_local_question_master" EntityType="Audire_dbModel.tbl_local_question_master" />
+          <EntitySet Name="tbl_process_master" EntityType="Audire_dbModel.tbl_process_master" />
+          <EntitySet Name="tbl_product_master" EntityType="Audire_dbModel.tbl_product_master" />
+          <EntitySet Name="tbl_question_master" EntityType="Audire_dbModel.tbl_question_master" />
+          <EntitySet Name="tbl_section_master" EntityType="Audire_dbModel.tbl_section_master" />
+          <FunctionImport Name="sp_checkAuthentication">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="userID" Mode="In" Type="String" />
+            <Parameter Name="deviceID" Mode="In" Type="String" />
+            <Parameter Name="l_err_code" Mode="InOut" Type="Int32" />
+            <Parameter Name="l_err_message" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DelPart" ReturnType="Collection(Audire_dbModel.sp_DelPart_Result)">
+            <Parameter Name="p_line_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_product_id" Mode="In" Type="Int32" />
+            <Parameter Name="l_err_code" Mode="InOut" Type="Int32" />
+            <Parameter Name="l_err_message" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetAuditPlan" ReturnType="Collection(Audire_dbModel.sp_GetAuditPlan_Result)">
+            <Parameter Name="p_location_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_module_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_line_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getCountryId">
+            <Parameter Name="p_country_code" Mode="In" Type="String" />
+            <Parameter Name="p_country_name" Mode="In" Type="String" />
+            <Parameter Name="l_country_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetCountryList" ReturnType="Collection(Audire_dbModel.sp_GetCountryList_Result)">
+            <Parameter Name="p_region_id" Mode="In" Type="Int32" />
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getLineId">
+            <Parameter Name="p_region_name" Mode="In" Type="String" />
+            <Parameter Name="p_region_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_country_name" Mode="In" Type="String" />
+            <Parameter Name="p_country_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_location_name" Mode="In" Type="String" />
+            <Parameter Name="p_location_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_line_name" Mode="In" Type="String" />
+            <Parameter Name="l_line_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetLinesForLocation" ReturnType="Collection(Audire_dbModel.sp_GetLinesForLocation_Result)">
+            <Parameter Name="p_location_id" Mode="In" Type="Int32" />
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getLocationId">
+            <Parameter Name="p_location_code" Mode="In" Type="String" />
+            <Parameter Name="p_location_name" Mode="In" Type="String" />
+            <Parameter Name="l_location_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetLocationList" ReturnType="Collection(Audire_dbModel.sp_GetLocationList_Result)">
+            <Parameter Name="p_country_id" Mode="In" Type="Int32" />
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetLocations">
+          <Parameter Name="p_user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetMailDetailsForReport" ReturnType="Collection(Audire_dbModel.sp_GetMailDetailsForReport_Result)">
+          <Parameter Name="audit_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetModuleList" ReturnType="Collection(Audire_dbModel.sp_GetModuleList_Result)" />
+          <FunctionImport Name="sp_getOpenTasks" ReturnType="Collection(Audire_dbModel.sp_getOpenTasks_Result)">
+            <Parameter Name="p_region_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_country_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_location_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_line_id" Mode="In" Type="Int32" />
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+            <Parameter Name="auditType_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetProcessList" ReturnType="Collection(Audire_dbModel.sp_GetProcessList_Result)" />
+          <FunctionImport Name="sp_getProductId">
+            <Parameter Name="p_product_code" Mode="In" Type="String" />
+            <Parameter Name="p_product_name" Mode="In" Type="String" />
+            <Parameter Name="l_product_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetProductsForLine" ReturnType="Collection(Audire_dbModel.sp_GetProductsForLine_Result)">
+            <Parameter Name="p_line_id" Mode="In" Type="Int32" />
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getQuestionList" ReturnType="Collection(Audire_dbModel.sp_getQuestionList_Result)">
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+            <Parameter Name="auditType_id" Mode="In" Type="Int32" />
+            <Parameter Name="l_location_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getRegionId">
+            <Parameter Name="p_region_code" Mode="In" Type="String" />
+            <Parameter Name="p_region_name" Mode="In" Type="String" />
+            <Parameter Name="l_region_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetRegionList" ReturnType="Collection(Audire_dbModel.sp_GetRegionList_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsCountry">
+            <Parameter Name="p_country_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_country_code" Mode="In" Type="String" />
+            <Parameter Name="p_country_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsLine">
+            <Parameter Name="p_line_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_region_name" Mode="In" Type="String" />
+            <Parameter Name="p_country_name" Mode="In" Type="String" />
+            <Parameter Name="p_location_name" Mode="In" Type="String" />
+            <Parameter Name="p_line_code" Mode="In" Type="String" />
+            <Parameter Name="p_line_name" Mode="In" Type="String" />
+            <Parameter Name="p_distribution_list" Mode="In" Type="String" />
+            <Parameter Name="l_err_code" Mode="InOut" Type="Int32" />
+            <Parameter Name="l_err_message" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsLineProduct">
+            <Parameter Name="p_line_product_rel_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_region_name" Mode="In" Type="String" />
+            <Parameter Name="p_country_name" Mode="In" Type="String" />
+            <Parameter Name="p_location_name" Mode="In" Type="String" />
+            <Parameter Name="p_line_name" Mode="In" Type="String" />
+            <Parameter Name="p_product_code" Mode="In" Type="String" />
+            <Parameter Name="p_start_date" Mode="In" Type="DateTime" />
+            <Parameter Name="p_end_date" Mode="In" Type="DateTime" />
+            <Parameter Name="l_err_code" Mode="InOut" Type="Int32" />
+            <Parameter Name="l_err_message" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsRegion">
+            <Parameter Name="p_region_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_region_code" Mode="In" Type="String" />
+            <Parameter Name="p_region_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_saveProduct">
+            <Parameter Name="p_product_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_product_code" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UserLogin" ReturnType="Collection(Audire_dbModel.sp_UserLogin_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(String)">
+            <Parameter Name="Input" Mode="In" Type="String" />
+            <Parameter Name="Character" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tbl_sub_section_master" EntityType="Audire_dbModel.tbl_sub_section_master" />
+          <FunctionImport Name="sp_getAuditType" ReturnType="Collection(Audire_dbModel.sp_getAuditType_Result)">
+          <Parameter Name="module_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getQuestionListForC" ReturnType="Collection(Audire_dbModel.sp_getQuestionListForC_Result)">
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+            <Parameter Name="auditType_id" Mode="In" Type="Int32" />
+            <Parameter Name="l_location_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getProcessEmpMapping" ReturnType="Collection(Audire_dbModel.sp_getProcessEmpMapping_Result)" />
+          <FunctionImport Name="sp_InsAuditPlan">
+            <Parameter Name="p_audit_plan_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_user_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_planned_date" Mode="In" Type="DateTime" />
+            <Parameter Name="p_planned_date_end" Mode="In" Type="DateTime" />
+            <Parameter Name="l_location_id" Mode="In" Type="Int32" />
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+            <Parameter Name="audit_type_id" Mode="In" Type="Int32" />
+            <Parameter Name="audit_note" Mode="In" Type="String" />
+            <Parameter Name="l_invite_to_list" Mode="InOut" Type="String" />
+            <Parameter Name="l_err_code" Mode="InOut" Type="Int32" />
+            <Parameter Name="l_err_message" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsQuestion">
+            <Parameter Name="question" Mode="In" Type="String" />
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+            <Parameter Name="auditType_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetMaxAuditId">
+          <Parameter Name="p_audit_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getUserList" ReturnType="Collection(Audire_dbModel.sp_getUserList_Result)" />
+          <FunctionImport Name="sp_getAuditScore" ReturnType="Collection(Audire_dbModel.sp_getAuditScore_Result)">
+            <Parameter Name="Module_id" Mode="In" Type="Int32" />
+            <Parameter Name="scoreby" Mode="In" Type="String" />
+            <Parameter Name="module_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getDashboardDetail" ReturnType="Collection(Audire_dbModel.sp_getDashboardDetail_Result)">
+            <Parameter Name="Module_id" Mode="In" Type="Int32" />
+            <Parameter Name="module_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getAllTasks" ReturnType="Collection(Audire_dbModel.sp_getAllTasks_Result)" />
+          <FunctionImport Name="sp_getMonthlyScore" ReturnType="Collection(Audire_dbModel.sp_getMonthlyScore_Result)">
+            <Parameter Name="Module_id" Mode="In" Type="Int32" />
+            <Parameter Name="audit_type_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getdropdowndetail" ReturnType="Collection(Audire_dbModel.sp_getdropdowndetail_Result)">
+          <Parameter Name="audit_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getDashboardGraph" ReturnType="Collection(Audire_dbModel.sp_getDashboardGraph_Result)" >
+          <Parameter Name="module_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getPendingAudits" ReturnType="Collection(Audire_dbModel.sp_getPendingAudits_Result)">
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="Module_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getAuditReport" ReturnType="Collection(Audire_dbModel.sp_getAuditReport_Result)" >
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getCAPAReport" ReturnType="Collection(Audire_dbModel.sp_getCAPAReport_Result)">
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+            <Parameter Name="audittype_id" Mode="In" Type="Int32" />
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_saveConfirmAudit">
+            <Parameter Name="audit_id" Mode="In" Type="Int32" />
+            <Parameter Name="confirm" Mode="In" Type="String" />
+            <Parameter Name="confirm_by" Mode="In" Type="Int32" />
+            <Parameter Name="err_code" Mode="InOut" Type="Int32" />
+            <Parameter Name="err_msg" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tbl_permissions" EntityType="Audire_dbModel.tbl_permissions" />
+          <EntitySet Name="tbl_role_master" EntityType="Audire_dbModel.tbl_role_master" />
+          <FunctionImport Name="sp_getRoleDetails" ReturnType="Collection(Audire_dbModel.sp_getRoleDetails_Result)" />
+          <FunctionImport Name="sp_GetPlanConsolidated" ReturnType="Collection(Audire_dbModel.sp_GetPlanConsolidated_Result)">
+            <Parameter Name="p_location_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_module_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getConsolidatedAuditStatus" ReturnType="Collection(Audire_dbModel.sp_getConsolidatedAuditStatus_Result)">
+            <Parameter Name="location_id" Mode="In" Type="Int32" />
+            <Parameter Name="module_id" Mode="In" Type="Int32" />
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="tbl_country_master">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Type="Int32" Name="country_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="region_id" />
+          <Property Type="String" Name="country_code" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="country_name" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_location_master">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Type="Int32" Name="location_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="country_id" />
+          <Property Type="Int32" Name="region_id" />
+          <Property Type="String" Name="location_code" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="location_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Time" Name="shift1_start_time" Precision="0" />
+          <Property Type="Time" Name="shift1_end_time" Precision="0" />
+          <Property Type="Time" Name="shift2_start_time" Precision="0" />
+          <Property Type="Time" Name="shift2_end_time" Precision="0" />
+          <Property Type="Time" Name="shift3_start_time" Precision="0" />
+          <Property Type="Time" Name="shift3_end_time" Precision="0" />
+          <Property Type="Int32" Name="no_of_shifts" />
+          <Property Type="String" Name="timezone_code" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="timezone_desc" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="default_language" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_Module_master">
+          <Key>
+            <PropertyRef Name="module_id" />
+          </Key>
+          <Property Type="Int32" Name="module_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="module" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="status" />
+        </EntityType>
+        <EntityType Name="tbl_region_master">
+          <Key>
+            <PropertyRef Name="region_id" />
+          </Key>
+          <Property Type="Int32" Name="region_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="region_code" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="region_name" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_line_master">
+          <Key>
+            <PropertyRef Name="line_id" />
+          </Key>
+          <Property Type="Int32" Name="line_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="Int32" Name="country_id" />
+          <Property Type="Int32" Name="region_id" />
+          <Property Type="String" Name="line_code" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="line_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="start_date" Precision="0" />
+          <Property Type="DateTime" Name="end_date" Precision="0" />
+          <Property Type="String" Name="distribution_list" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="module_id" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_user_master">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Type="Int32" Name="user_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="username" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="passwd" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="emp_full_name" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="display_name_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email_id" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="String" Name="role" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="global_admin_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="site_admin_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="start_date" Precision="0" />
+          <Property Type="DateTime" Name="end_date" Precision="0" />
+          <Property Type="Int32" Name="role_id" />
+          <Property Type="Int32" Name="region_id" />
+          <Property Type="Int32" Name="country_id" />
+          <Property Type="String" Name="emp_first_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="emp_last_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Admin_Type" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="process_id" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="module_id" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="reporting_manager" Type="Int32" />
+          <Property Name="profile_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Menu_List">
+          <Key>
+            <PropertyRef Name="M_ID" />
+          </Key>
+          <Property Type="Int32" Name="M_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="M_P_ID" />
+          <Property Type="String" Name="M_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CONTROLLER_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ACTION_NAME" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_audit_plan">
+          <Key>
+            <PropertyRef Name="audit_plan_id" />
+          </Key>
+          <Property Type="Int32" Name="audit_plan_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="to_be_audited_by_user_id" />
+          <Property Type="DateTime" Name="planned_date" Precision="3" />
+          <Property Type="Int32" Name="shift_no" />
+          <Property Type="Int32" Name="line_product_rel_id" />
+          <Property Type="String" Name="notification_sent_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="to_be_audited_by_group_id" />
+          <Property Type="DateTime" Name="planned_date_end" Precision="3" />
+          <Property Type="Int32" Name="line_id" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="Int32" Name="module_id" />
+          <Property Type="Int32" Name="Audit_type_id" />
+          <Property Name="audit_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_audit_type">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Audit_Type" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="module_id" />
+          <Property Type="Int32" Name="Status" />
+          <Property Type="String" Name="Color_code" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Parts" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="display_seq" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_AuditResult">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="audit_id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="audit_id" Nullable="false" />
+          <Property Type="Int32" Name="question_id" />
+          <Property Type="String" Name="answer" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="audit_comment" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="assigned_To" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="audit_images" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="module_id" />
+          <Property Type="Int32" Name="region_id" />
+          <Property Type="Int32" Name="country_id" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="Int32" Name="line_id" />
+          <Property Type="Int32" Name="product_id" />
+          <Property Type="Int32" Name="shift_no" />
+          <Property Type="Int32" Name="audit_performed_by" />
+          <Property Type="String" Name="audit_performed_on" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="audit_performed_date" Precision="3" />
+          <Property Type="String" Name="review_status" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="review_comment" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="review_images" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="reviewed_by" />
+          <Property Type="String" Name="reviewed_on" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="reviewed_date" Precision="3" />
+          <Property Type="Int32" Name="AuditType_id" />
+          <Property Name="Part_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Auditor_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Audit_number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="root_cause" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Corrective_Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Preventive_Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="confirm_comment" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="confirmed_by" Type="Int32" />
+          <Property Name="confirmed_date" Type="DateTime" Precision="3" />
+          <Property Name="IsCompleted" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_distribution_list">
+          <Key>
+            <PropertyRef Name="dist_list_id" />
+          </Key>
+          <Property Type="Int32" Name="dist_list_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="String" Name="list_type" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email_list" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="send_notification_to_owner" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_group_master">
+          <Key>
+            <PropertyRef Name="group_id" />
+            <PropertyRef Name="group_name" />
+          </Key>
+          <Property Type="Int32" Name="group_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="String" Name="group_name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_group_members">
+          <Key>
+            <PropertyRef Name="group_member_id" />
+          </Key>
+          <Property Type="Int32" Name="group_member_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="Int32" Name="group_id" />
+          <Property Type="Int32" Name="user_id" />
+        </EntityType>
+        <EntityType Name="tbl_line_product_relationship">
+          <Key>
+            <PropertyRef Name="line_product_rel_id" />
+          </Key>
+          <Property Type="Int32" Name="line_product_rel_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="product_id" />
+          <Property Type="Int32" Name="line_id" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="Int32" Name="country_id" />
+          <Property Type="Int32" Name="region_id" />
+          <Property Type="Int32" Name="no_of_shifts" />
+          <Property Type="DateTime" Name="start_date" Precision="0" />
+          <Property Type="DateTime" Name="end_date" Precision="0" />
+          <Property Type="String" Name="notification_sent_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_local_answers">
+          <Key>
+            <PropertyRef Name="loc_answer_id" />
+          </Key>
+          <Property Type="Int32" Name="loc_answer_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="audit_id" />
+          <Property Type="Int32" Name="audit_plan_id" />
+          <Property Type="Int32" Name="audited_by_user_id" />
+          <Property Type="Int32" Name="line_product_rel_id" Nullable="false" />
+          <Property Type="DateTime" Name="audit_date" Precision="3" />
+          <Property Type="Int32" Name="Shift_No" />
+          <Property Type="Int32" Name="question_id" />
+          <Property Type="Int32" Name="answer" />
+          <Property Type="String" Name="remarks" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="image_file_name" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="review_user_id" />
+          <Property Type="DateTime" Name="review_closed_on" Precision="3" />
+          <Property Type="Int32" Name="review_closed_status" />
+          <Property Type="String" Name="review_comments" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="review_image_file_name" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="notification_sent_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="region_id" />
+          <Property Type="Int32" Name="country_id" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="Int32" Name="section_id" />
+          <Property Type="Int32" Name="line_id" />
+        </EntityType>
+        <EntityType Name="tbl_local_answers_bak">
+          <Key>
+            <PropertyRef Name="loc_answer_id" />
+            <PropertyRef Name="line_product_rel_id" />
+          </Key>
+          <Property Type="Int32" Name="loc_answer_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="audit_id" />
+          <Property Type="Int32" Name="audit_plan_id" />
+          <Property Type="Int32" Name="audited_by_user_id" />
+          <Property Type="Int32" Name="line_product_rel_id" Nullable="false" />
+          <Property Type="DateTime" Name="audit_date" Precision="3" />
+          <Property Type="Int32" Name="Shift_No" />
+          <Property Type="Int32" Name="question_id" />
+          <Property Type="Int32" Name="answer" />
+          <Property Type="String" Name="remarks" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="image_file_name" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="review_user_id" />
+          <Property Type="DateTime" Name="review_closed_on" Precision="3" />
+          <Property Type="Int32" Name="review_closed_status" />
+          <Property Type="String" Name="review_comments" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="review_image_file_name" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="notification_sent_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="region_id" />
+          <Property Type="Int32" Name="country_id" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="Int32" Name="section_id" />
+          <Property Type="Int32" Name="line_id" />
+        </EntityType>
+        <EntityType Name="tbl_local_question_master">
+          <Key>
+            <PropertyRef Name="local_question_id" />
+          </Key>
+          <Property Type="Int32" Name="local_question_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="location_id" />
+          <Property Type="Int32" Name="section_id" />
+          <Property Type="String" Name="local_question" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="local_help_text" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="display_sequence" />
+          <Property Type="String" Name="how_to_check" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="na_flag" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="max_no_of_pics_allowed" />
+        </EntityType>
+        <EntityType Name="tbl_process_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Process" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_product_master">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Type="Int32" Name="product_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="product_code" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="product_name" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_question_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="question_id" Nullable="false" />
+          <Property Type="Int32" Name="section_id" />
+          <Property Type="String" Name="question" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="module_id" />
+          <Property Type="Int32" Name="Audit_type_id" />
+          <Property Type="Int32" Name="sub_section_id" />
+          <Property Type="String" Name="section_name" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="sub_section_name" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="help_text" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="clause" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_section_master">
+          <Key>
+            <PropertyRef Name="section_id" />
+          </Key>
+          <Property Type="Int32" Name="section_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="section_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="display_sequence" />
+        </EntityType>
+        <ComplexType Name="sp_DelPart_Result">
+          <Property Type="Int32" Name="err_code" Nullable="true" />
+          <Property Type="String" Name="err_message" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAuditPlan_Result">
+          <Property Type="Int32" Name="audit_plan_id" Nullable="false" />
+          <Property Type="String" Name="planned_date" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="planned_date_end" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="Audit_status" Nullable="true" />
+          <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="line_name" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Emp_name" Nullable="true" MaxLength="1000" />
+          <Property Type="Double" Name="Audit_Score" Nullable="true" />
+          <Property Type="String" Name="module" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Audit_Type" Nullable="true" />
+          <Property Type="Int32" Name="to_be_audited_by_user_id" Nullable="true" />
+          <Property Type="Int32" Name="Audit_type_id" Nullable="true" />
+          <Property Type="String" Name="color_code" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="module_id" Nullable="false" />
+          <Property Type="String" Name="audit_note" Nullable="true" />
+          <Property Type="String" Name="AuditType_Code" Nullable="false" MaxLength="2" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCountryList_Result">
+          <Property Type="Int32" Name="country_id" Nullable="false" />
+          <Property Type="String" Name="country_code" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="country_name" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_GetLinesForLocation_Result">
+          <Property Type="Int32" Name="line_id" Nullable="false" />
+          <Property Type="String" Name="line_name" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_GetLocationList_Result">
+          <Property Type="Int32" Name="location_id" Nullable="false" />
+          <Property Type="String" Name="location_code" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_GetMailDetailsForReport_Result">
+          <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="line_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EmailId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetModuleList_Result">
+          <Property Type="Int32" Name="module_id" Nullable="false" />
+          <Property Type="String" Name="module" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_getOpenTasks_Result">
+          <Property Type="Int32" Name="answer_id" Nullable="false" />
+          <Property Type="Int32" Name="audit_id" Nullable="false" />
+          <Property Type="Int32" Name="question_id" Nullable="true" />
+          <Property Type="String" Name="answer" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="audit_comment" Nullable="true" />
+          <Property Type="String" Name="audit_images" Nullable="true" />
+          <Property Type="String" Name="question" Nullable="true" />
+          <Property Type="String" Name="review_comment" Nullable="true" />
+          <Property Type="String" Name="clause" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="root_cause" Nullable="true" />
+          <Property Type="String" Name="Corrective_Action" Nullable="true" />
+          <Property Type="String" Name="Preventive_Action" Nullable="true" />
+          <Property Type="String" Name="Audit_number" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="assigned_To" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetProcessList_Result">
+          <Property Type="Int32" Name="Process_id" Nullable="false" />
+          <Property Type="String" Name="process_name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetProductsForLine_Result">
+          <Property Type="Int32" Name="product_id" Nullable="false" />
+          <Property Type="String" Name="product_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="line_id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getQuestionList_Result">
+          <Property Type="Int32" Name="question_id" Nullable="false" />
+          <Property Type="String" Name="question" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Audit_Type" Nullable="true" />
+          <Property Type="Int32" Name="audit_type_id" Nullable="true" />
+          <Property Type="String" Name="section_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="sub_section_name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetRegionList_Result">
+          <Property Type="Int32" Name="region_id" Nullable="false" />
+          <Property Type="String" Name="region_code" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="region_name" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_UserLogin_Result">
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="String" Name="role" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="role_id" Nullable="true" />
+          <Property Type="String" Name="email_id" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="emp_full_name" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="display_name_flag" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="global_admin_flag" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="site_admin_flag" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="region_id" Nullable="true" />
+          <Property Type="String" Name="region_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="country_id" Nullable="true" />
+          <Property Type="String" Name="country_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="location_id" Nullable="false" />
+          <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="template" Nullable="true" />
+          <Property Type="Int32" Name="err_code" Nullable="true" />
+          <Property Type="String" Name="err_message" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="tbl_sub_section_master">
+          <Key>
+            <PropertyRef Name="sub_section_id" />
+          </Key>
+          <Property Type="Int32" Name="sub_section_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="sub_section_name" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="sp_getAuditType_Result">
+          <Property Type="Int32" Name="AuditType_id" Nullable="false" />
+          <Property Type="String" Name="AuditType" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getQuestionListForC_Result">
+          <Property Type="Int32" Name="question_id" Nullable="false" />
+          <Property Type="String" Name="question" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="section_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="sub_section_name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getProductListforEdit_Result">
+          <Property Type="Int32" Name="region_id" Nullable="false" />
+          <Property Type="String" Name="region_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="country_id" Nullable="false" />
+          <Property Type="String" Name="country_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="location_id" Nullable="false" />
+          <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="line_id" Nullable="false" />
+          <Property Type="String" Name="line_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="line_code" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="product_name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getProcessEmpMapping_Result" >
+          <Property Type="Int32" Name="process_id" Nullable="false" />
+          <Property Type="String" Name="process" Nullable="false" />
+          <Property Type="String" Name="user_id" Nullable="false" />
+          <Property Type="String" Name="emp_full_name" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_getUserList_Result">
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="passwd" Nullable="true" />
+          <Property Type="String" Name="emp_full_name" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="display_name_flag" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="email_id" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="location_id" Nullable="true" />
+          <Property Type="String" Name="role" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="global_admin_flag" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="site_admin_flag" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="start_date" Nullable="true" />
+          <Property Type="DateTime" Name="end_date" Nullable="true" />
+          <Property Type="Int32" Name="role_id" Nullable="true" />
+          <Property Type="Int32" Name="region_id" Nullable="true" />
+          <Property Type="Int32" Name="country_id" Nullable="true" />
+          <Property Type="String" Name="emp_first_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="emp_last_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Admin_Type" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="process_id" Nullable="true" />
+          <Property Type="String" Name="module_id" Nullable="true" />
+          <Property Type="String" Name="module" Nullable="true" />
+          <Property Type="String" Name="process" Nullable="true" />
+          <Property Type="String" Name="location" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="reporting_manager" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getAuditScore_Result" >
+          <Property Type="String" Name="Audit_Type" Nullable="false" />
+          <Property Type="Int32" Name="Audit_Type_id" Nullable="false" />
+          <Property Type="String" Name="score" Nullable="false" />
+          <Property Type="String" Name="last_date" Nullable="false" />
+          <Property Type="String" Name="location" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_getDashboardDetail_Result">
+          <Property Type="Int32" Name="open_NC" Nullable="false" />
+          <Property Type="Int32" Name="closed_NC" Nullable="false" />
+          <Property Type="Int32" Name="monthly_score" Nullable="false" />
+          <Property Type="Int32" Name="tot_audit" Nullable="false" />
+          <Property Type="Int32" Name="pending" Nullable="false" />
+          <Property Type="Int32" Name="quarterly_score" Nullable="false" />
+          <Property Type="Int32" Name="halfyearly_score" Nullable="false" />
+          <Property Type="Int32" Name="yearly_score" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_getAllTasks_Result">
+          <Property Type="Int32" Name="audit_id" Nullable="false" />
+          <Property Type="String" Name="Audit_Type" Nullable="true" />
+          <Property Type="String" Name="module" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="audit_performed_date" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_getMonthlyScore_Result">
+          <Property Type="String" Name="month" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="score" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getdropdowndetail_Result">
+          <Property Type="Int32" Name="region_id" Nullable="true" />
+          <Property Type="Int32" Name="country_id" Nullable="true" />
+          <Property Type="Int32" Name="location_id" Nullable="true" />
+          <Property Type="Int32" Name="module_id" Nullable="true" />
+          <Property Type="Int32" Name="AuditType_id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getDashboardGraph_Result">
+          <Property Type="String" Name="audit_date" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="audit_count" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getPendingAudits_Result">
+          <Property Type="DateTime" Name="planned_date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="week_num" Nullable="true" />
+          <Property Type="Int32" Name="location_id" Nullable="true" />
+          <Property Type="String" Name="location" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Audit_type_id" Nullable="true" />
+          <Property Type="String" Name="Audit_Type" Nullable="true" />
+          <Property Type="Int32" Name="color_code" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_getAuditReport_Result">
+          <Property Type="Int32" Name="audit_id" Nullable="false" />
+          <Property Type="String" Name="Audit_number" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="audit_performed_by" Nullable="true" />
+          <Property Type="Int32" Name="location_id" Nullable="true" />
+          <Property Type="String" Name="audit_performed_date" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="emp_full_name" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="location_name" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_getCAPAReport_Result">
+          <Property Type="String" Name="Audit_number" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="audit_id" Nullable="false" />
+          <Property Type="String" Name="confirm_comment" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="report_date" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="Containment" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="pa_date" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="Final_Status" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <EntityType Name="tbl_permissions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Permission" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_role_master">
+          <Key>
+            <PropertyRef Name="Role_id" />
+          </Key>
+          <Property Name="Role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Role_Access" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="sp_getRoleDetails_Result" >
+          <Property Type="Int32" Name="Role_id" Nullable="false" />
+          <Property Type="String" Name="Role_name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Role_Access" Nullable="true" />
+          <Property Type="String" Name="users" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetPlanConsolidated_Result">
+          <Property Type="Int32" Name="TotalPlan" Nullable="true" />
+          <Property Type="Int32" Name="LMTotalPlan" Nullable="true" />
+          <Property Type="Double" Name="TotalPlanRate" Nullable="true" />
+          <Property Type="Int32" Name="TotalPlanCompleted" Nullable="true" />
+          <Property Type="Int32" Name="LMTotalCompleted" Nullable="true" />
+          <Property Type="Double" Name="TotalCompletedRate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getConsolidatedAuditStatus_Result">
+          <Property Type="String" Name="module" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Audit_Type" Nullable="true" />
+          <Property Type="DateTime" Name="audit_performed_date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="emp_full_name" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Audit_number" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="audit_id" Nullable="false" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="11" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Audire_dbModelStoreContainer" CdmEntityContainer="Audire_dbEntities">
+          <EntitySetMapping Name="tbl_country_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_country_master">
+              <MappingFragment StoreEntitySet="tbl_country_master">
+                <ScalarProperty Name="country_name" ColumnName="country_name" />
+                <ScalarProperty Name="country_code" ColumnName="country_code" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_location_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_location_master">
+              <MappingFragment StoreEntitySet="tbl_location_master">
+                <ScalarProperty Name="default_language" ColumnName="default_language" />
+                <ScalarProperty Name="timezone_desc" ColumnName="timezone_desc" />
+                <ScalarProperty Name="timezone_code" ColumnName="timezone_code" />
+                <ScalarProperty Name="no_of_shifts" ColumnName="no_of_shifts" />
+                <ScalarProperty Name="shift3_end_time" ColumnName="shift3_end_time" />
+                <ScalarProperty Name="shift3_start_time" ColumnName="shift3_start_time" />
+                <ScalarProperty Name="shift2_end_time" ColumnName="shift2_end_time" />
+                <ScalarProperty Name="shift2_start_time" ColumnName="shift2_start_time" />
+                <ScalarProperty Name="shift1_end_time" ColumnName="shift1_end_time" />
+                <ScalarProperty Name="shift1_start_time" ColumnName="shift1_start_time" />
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+                <ScalarProperty Name="location_code" ColumnName="location_code" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Module_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_Module_master">
+              <MappingFragment StoreEntitySet="tbl_Module_master">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="module" ColumnName="module" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_region_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_region_master">
+              <MappingFragment StoreEntitySet="tbl_region_master">
+                <ScalarProperty Name="region_name" ColumnName="region_name" />
+                <ScalarProperty Name="region_code" ColumnName="region_code" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_line_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_line_master">
+              <MappingFragment StoreEntitySet="tbl_line_master">
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="distribution_list" ColumnName="distribution_list" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="line_name" ColumnName="line_name" />
+                <ScalarProperty Name="line_code" ColumnName="line_code" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_user_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_user_master">
+              <MappingFragment StoreEntitySet="tbl_user_master">
+                <ScalarProperty Name="profile_pic" ColumnName="profile_pic" />
+                <ScalarProperty Name="reporting_manager" ColumnName="reporting_manager" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="process_id" ColumnName="process_id" />
+                <ScalarProperty Name="Admin_Type" ColumnName="Admin_Type" />
+                <ScalarProperty Name="emp_last_name" ColumnName="emp_last_name" />
+                <ScalarProperty Name="emp_first_name" ColumnName="emp_first_name" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="site_admin_flag" ColumnName="site_admin_flag" />
+                <ScalarProperty Name="global_admin_flag" ColumnName="global_admin_flag" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="display_name_flag" ColumnName="display_name_flag" />
+                <ScalarProperty Name="emp_full_name" ColumnName="emp_full_name" />
+                <ScalarProperty Name="passwd" ColumnName="passwd" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu_List">
+            <EntityTypeMapping TypeName="Audire_dbModel.Menu_List">
+              <MappingFragment StoreEntitySet="Menu_List">
+                <ScalarProperty Name="ACTION_NAME" ColumnName="ACTION_NAME" />
+                <ScalarProperty Name="CONTROLLER_NAME" ColumnName="CONTROLLER_NAME" />
+                <ScalarProperty Name="M_NAME" ColumnName="M_NAME" />
+                <ScalarProperty Name="M_P_ID" ColumnName="M_P_ID" />
+                <ScalarProperty Name="M_ID" ColumnName="M_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_audit_plan">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_audit_plan">
+              <MappingFragment StoreEntitySet="tbl_audit_plan">
+                <ScalarProperty Name="audit_note" ColumnName="audit_note" />
+                <ScalarProperty Name="Audit_type_id" ColumnName="Audit_type_id" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+                <ScalarProperty Name="planned_date_end" ColumnName="planned_date_end" />
+                <ScalarProperty Name="to_be_audited_by_group_id" ColumnName="to_be_audited_by_group_id" />
+                <ScalarProperty Name="notification_sent_flag" ColumnName="notification_sent_flag" />
+                <ScalarProperty Name="line_product_rel_id" ColumnName="line_product_rel_id" />
+                <ScalarProperty Name="shift_no" ColumnName="shift_no" />
+                <ScalarProperty Name="planned_date" ColumnName="planned_date" />
+                <ScalarProperty Name="to_be_audited_by_user_id" ColumnName="to_be_audited_by_user_id" />
+                <ScalarProperty Name="audit_plan_id" ColumnName="audit_plan_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_audit_type">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_audit_type">
+              <MappingFragment StoreEntitySet="tbl_audit_type">
+                <ScalarProperty Name="display_seq" ColumnName="display_seq" />
+                <ScalarProperty Name="Parts" ColumnName="Parts" />
+                <ScalarProperty Name="Color_code" ColumnName="Color_code" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="Audit_Type" ColumnName="Audit_Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AuditResult">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_AuditResult">
+              <MappingFragment StoreEntitySet="tbl_AuditResult">
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+                <ScalarProperty Name="confirmed_date" ColumnName="confirmed_date" />
+                <ScalarProperty Name="confirmed_by" ColumnName="confirmed_by" />
+                <ScalarProperty Name="confirm_comment" ColumnName="confirm_comment" />
+                <ScalarProperty Name="Preventive_Action" ColumnName="Preventive_Action" />
+                <ScalarProperty Name="Corrective_Action" ColumnName="Corrective_Action" />
+                <ScalarProperty Name="root_cause" ColumnName="root_cause" />
+                <ScalarProperty Name="Audit_number" ColumnName="Audit_number" />
+                <ScalarProperty Name="Auditor_Comment" ColumnName="Auditor_Comment" />
+                <ScalarProperty Name="Part_name" ColumnName="Part_name" />
+                <ScalarProperty Name="AuditType_id" ColumnName="AuditType_id" />
+                <ScalarProperty Name="reviewed_date" ColumnName="reviewed_date" />
+                <ScalarProperty Name="reviewed_on" ColumnName="reviewed_on" />
+                <ScalarProperty Name="reviewed_by" ColumnName="reviewed_by" />
+                <ScalarProperty Name="review_images" ColumnName="review_images" />
+                <ScalarProperty Name="review_comment" ColumnName="review_comment" />
+                <ScalarProperty Name="review_status" ColumnName="review_status" />
+                <ScalarProperty Name="audit_performed_date" ColumnName="audit_performed_date" />
+                <ScalarProperty Name="audit_performed_on" ColumnName="audit_performed_on" />
+                <ScalarProperty Name="audit_performed_by" ColumnName="audit_performed_by" />
+                <ScalarProperty Name="shift_no" ColumnName="shift_no" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="audit_images" ColumnName="audit_images" />
+                <ScalarProperty Name="assigned_To" ColumnName="assigned_To" />
+                <ScalarProperty Name="audit_comment" ColumnName="audit_comment" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="audit_id" ColumnName="audit_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_distribution_list">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_distribution_list">
+              <MappingFragment StoreEntitySet="tbl_distribution_list">
+                <ScalarProperty Name="send_notification_to_owner" ColumnName="send_notification_to_owner" />
+                <ScalarProperty Name="email_list" ColumnName="email_list" />
+                <ScalarProperty Name="list_type" ColumnName="list_type" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="dist_list_id" ColumnName="dist_list_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_group_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_group_master">
+              <MappingFragment StoreEntitySet="tbl_group_master">
+                <ScalarProperty Name="group_name" ColumnName="group_name" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_group_members">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_group_members">
+              <MappingFragment StoreEntitySet="tbl_group_members">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="group_member_id" ColumnName="group_member_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_line_product_relationship">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_line_product_relationship">
+              <MappingFragment StoreEntitySet="tbl_line_product_relationship">
+                <ScalarProperty Name="notification_sent_flag" ColumnName="notification_sent_flag" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="no_of_shifts" ColumnName="no_of_shifts" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="line_product_rel_id" ColumnName="line_product_rel_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_local_answers">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_local_answers">
+              <MappingFragment StoreEntitySet="tbl_local_answers">
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+                <ScalarProperty Name="section_id" ColumnName="section_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="notification_sent_flag" ColumnName="notification_sent_flag" />
+                <ScalarProperty Name="review_image_file_name" ColumnName="review_image_file_name" />
+                <ScalarProperty Name="review_comments" ColumnName="review_comments" />
+                <ScalarProperty Name="review_closed_status" ColumnName="review_closed_status" />
+                <ScalarProperty Name="review_closed_on" ColumnName="review_closed_on" />
+                <ScalarProperty Name="review_user_id" ColumnName="review_user_id" />
+                <ScalarProperty Name="image_file_name" ColumnName="image_file_name" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="Shift_No" ColumnName="Shift_No" />
+                <ScalarProperty Name="audit_date" ColumnName="audit_date" />
+                <ScalarProperty Name="line_product_rel_id" ColumnName="line_product_rel_id" />
+                <ScalarProperty Name="audited_by_user_id" ColumnName="audited_by_user_id" />
+                <ScalarProperty Name="audit_plan_id" ColumnName="audit_plan_id" />
+                <ScalarProperty Name="audit_id" ColumnName="audit_id" />
+                <ScalarProperty Name="loc_answer_id" ColumnName="loc_answer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_local_answers_bak">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_local_answers_bak">
+              <MappingFragment StoreEntitySet="tbl_local_answers_bak">
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+                <ScalarProperty Name="section_id" ColumnName="section_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="notification_sent_flag" ColumnName="notification_sent_flag" />
+                <ScalarProperty Name="review_image_file_name" ColumnName="review_image_file_name" />
+                <ScalarProperty Name="review_comments" ColumnName="review_comments" />
+                <ScalarProperty Name="review_closed_status" ColumnName="review_closed_status" />
+                <ScalarProperty Name="review_closed_on" ColumnName="review_closed_on" />
+                <ScalarProperty Name="review_user_id" ColumnName="review_user_id" />
+                <ScalarProperty Name="image_file_name" ColumnName="image_file_name" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="Shift_No" ColumnName="Shift_No" />
+                <ScalarProperty Name="audit_date" ColumnName="audit_date" />
+                <ScalarProperty Name="line_product_rel_id" ColumnName="line_product_rel_id" />
+                <ScalarProperty Name="audited_by_user_id" ColumnName="audited_by_user_id" />
+                <ScalarProperty Name="audit_plan_id" ColumnName="audit_plan_id" />
+                <ScalarProperty Name="audit_id" ColumnName="audit_id" />
+                <ScalarProperty Name="loc_answer_id" ColumnName="loc_answer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_local_question_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_local_question_master">
+              <MappingFragment StoreEntitySet="tbl_local_question_master">
+                <ScalarProperty Name="max_no_of_pics_allowed" ColumnName="max_no_of_pics_allowed" />
+                <ScalarProperty Name="na_flag" ColumnName="na_flag" />
+                <ScalarProperty Name="how_to_check" ColumnName="how_to_check" />
+                <ScalarProperty Name="display_sequence" ColumnName="display_sequence" />
+                <ScalarProperty Name="local_help_text" ColumnName="local_help_text" />
+                <ScalarProperty Name="local_question" ColumnName="local_question" />
+                <ScalarProperty Name="section_id" ColumnName="section_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="local_question_id" ColumnName="local_question_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_process_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_process_master">
+              <MappingFragment StoreEntitySet="tbl_process_master">
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_product_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_product_master">
+              <MappingFragment StoreEntitySet="tbl_product_master">
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_code" ColumnName="product_code" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_question_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_question_master">
+              <MappingFragment StoreEntitySet="tbl_question_master">
+                <ScalarProperty Name="clause" ColumnName="clause" />
+                <ScalarProperty Name="help_text" ColumnName="help_text" />
+                <ScalarProperty Name="sub_section_name" ColumnName="sub_section_name" />
+                <ScalarProperty Name="section_name" ColumnName="section_name" />
+                <ScalarProperty Name="sub_section_id" ColumnName="sub_section_id" />
+                <ScalarProperty Name="Audit_type_id" ColumnName="Audit_type_id" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="section_id" ColumnName="section_id" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_section_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_section_master">
+              <MappingFragment StoreEntitySet="tbl_section_master">
+                <ScalarProperty Name="display_sequence" ColumnName="display_sequence" />
+                <ScalarProperty Name="section_name" ColumnName="section_name" />
+                <ScalarProperty Name="section_id" ColumnName="section_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_checkAuthentication" FunctionName="Audire_dbModel.Store.sp_checkAuthentication" />
+          <FunctionImportMapping FunctionImportName="sp_DelPart" FunctionName="Audire_dbModel.Store.sp_DelPart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_DelPart_Result">
+                <ScalarProperty Name="err_code" ColumnName="err_code" />
+                <ScalarProperty Name="err_message" ColumnName="err_message" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetAuditPlan" FunctionName="Audire_dbModel.Store.sp_GetAuditPlan">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_GetAuditPlan_Result">
+                <ScalarProperty Name="audit_plan_id" ColumnName="audit_plan_id" />
+                <ScalarProperty Name="planned_date" ColumnName="planned_date" />
+                <ScalarProperty Name="planned_date_end" ColumnName="planned_date_end" />
+                <ScalarProperty Name="Audit_status" ColumnName="Audit_status" />
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+                <ScalarProperty Name="line_name" ColumnName="line_name" />
+                <ScalarProperty Name="Emp_name" ColumnName="Emp_name" />
+                <ScalarProperty Name="Audit_Score" ColumnName="Audit_Score" />
+                <ScalarProperty Name="module" ColumnName="module" />
+                <ScalarProperty Name="Audit_Type" ColumnName="Audit_Type" />
+                <ScalarProperty Name="to_be_audited_by_user_id" ColumnName="to_be_audited_by_user_id" />
+                <ScalarProperty Name="Audit_type_id" ColumnName="Audit_type_id" />
+                <ScalarProperty Name="color_code" ColumnName="color_code" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="audit_note" ColumnName="audit_note" />
+                <ScalarProperty Name="AuditType_Code" ColumnName="AuditType_Code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getCountryId" FunctionName="Audire_dbModel.Store.sp_getCountryId" />
+          <FunctionImportMapping FunctionImportName="sp_GetCountryList" FunctionName="Audire_dbModel.Store.sp_GetCountryList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_GetCountryList_Result">
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="country_code" ColumnName="country_code" />
+                <ScalarProperty Name="country_name" ColumnName="country_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getLineId" FunctionName="Audire_dbModel.Store.sp_getLineId" />
+          <FunctionImportMapping FunctionImportName="sp_GetLinesForLocation" FunctionName="Audire_dbModel.Store.sp_GetLinesForLocation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_GetLinesForLocation_Result">
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+                <ScalarProperty Name="line_name" ColumnName="line_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getLocationId" FunctionName="Audire_dbModel.Store.sp_getLocationId" />
+          <FunctionImportMapping FunctionImportName="sp_GetLocationList" FunctionName="Audire_dbModel.Store.sp_GetLocationList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_GetLocationList_Result">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="location_code" ColumnName="location_code" />
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetLocations" FunctionName="Audire_dbModel.Store.sp_GetLocations" />
+          <FunctionImportMapping FunctionImportName="sp_GetMailDetailsForReport" FunctionName="Audire_dbModel.Store.sp_GetMailDetailsForReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_GetMailDetailsForReport_Result">
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+                <ScalarProperty Name="line_name" ColumnName="line_name" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetModuleList" FunctionName="Audire_dbModel.Store.sp_GetModuleList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_GetModuleList_Result">
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="module" ColumnName="module" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getOpenTasks" FunctionName="Audire_dbModel.Store.sp_getOpenTasks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getOpenTasks_Result">
+                <ScalarProperty Name="answer_id" ColumnName="answer_id" />
+                <ScalarProperty Name="audit_id" ColumnName="audit_id" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="audit_comment" ColumnName="audit_comment" />
+                <ScalarProperty Name="audit_images" ColumnName="audit_images" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="review_comment" ColumnName="review_comment" />
+                <ScalarProperty Name="clause" ColumnName="clause" />
+                <ScalarProperty Name="root_cause" ColumnName="root_cause" />
+                <ScalarProperty Name="Corrective_Action" ColumnName="Corrective_Action" />
+                <ScalarProperty Name="Preventive_Action" ColumnName="Preventive_Action" />
+                <ScalarProperty Name="Audit_number" ColumnName="Audit_number" />
+                <ScalarProperty Name="assigned_To" ColumnName="assigned_To" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetProcessList" FunctionName="Audire_dbModel.Store.sp_GetProcessList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_GetProcessList_Result">
+                <ScalarProperty Name="Process_id" ColumnName="Process_id" />
+                <ScalarProperty Name="process_name" ColumnName="process_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getProductId" FunctionName="Audire_dbModel.Store.sp_getProductId" />
+          <FunctionImportMapping FunctionImportName="sp_GetProductsForLine" FunctionName="Audire_dbModel.Store.sp_GetProductsForLine">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_GetProductsForLine_Result">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getQuestionList" FunctionName="Audire_dbModel.Store.sp_getQuestionList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getQuestionList_Result">
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="Audit_Type" ColumnName="Audit_Type" />
+                <ScalarProperty Name="audit_type_id" ColumnName="audit_type_id" />
+                <ScalarProperty Name="section_name" ColumnName="section_name" />
+                <ScalarProperty Name="sub_section_name" ColumnName="sub_section_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getRegionId" FunctionName="Audire_dbModel.Store.sp_getRegionId" />
+          <FunctionImportMapping FunctionImportName="sp_GetRegionList" FunctionName="Audire_dbModel.Store.sp_GetRegionList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_GetRegionList_Result">
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="region_code" ColumnName="region_code" />
+                <ScalarProperty Name="region_name" ColumnName="region_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_InsCountry" FunctionName="Audire_dbModel.Store.sp_InsCountry" />
+          <FunctionImportMapping FunctionImportName="sp_InsLine" FunctionName="Audire_dbModel.Store.sp_InsLine" />
+          <FunctionImportMapping FunctionImportName="sp_InsLineProduct" FunctionName="Audire_dbModel.Store.sp_InsLineProduct" />
+          <FunctionImportMapping FunctionImportName="sp_InsRegion" FunctionName="Audire_dbModel.Store.sp_InsRegion" />
+          <FunctionImportMapping FunctionImportName="sp_saveProduct" FunctionName="Audire_dbModel.Store.sp_saveProduct" />
+          <FunctionImportMapping FunctionImportName="sp_UserLogin" FunctionName="Audire_dbModel.Store.sp_UserLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_UserLogin_Result">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="emp_full_name" ColumnName="emp_full_name" />
+                <ScalarProperty Name="display_name_flag" ColumnName="display_name_flag" />
+                <ScalarProperty Name="global_admin_flag" ColumnName="global_admin_flag" />
+                <ScalarProperty Name="site_admin_flag" ColumnName="site_admin_flag" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="region_name" ColumnName="region_name" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="country_name" ColumnName="country_name" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+                <ScalarProperty Name="template" ColumnName="template" />
+                <ScalarProperty Name="err_code" ColumnName="err_code" />
+                <ScalarProperty Name="err_message" ColumnName="err_message" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SplitString" FunctionName="Audire_dbModel.Store.SplitString" />
+          <EntitySetMapping Name="tbl_sub_section_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_sub_section_master">
+              <MappingFragment StoreEntitySet="tbl_sub_section_master">
+                <ScalarProperty Name="sub_section_name" ColumnName="sub_section_name" />
+                <ScalarProperty Name="sub_section_id" ColumnName="sub_section_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_getAuditType" FunctionName="Audire_dbModel.Store.sp_getAuditType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getAuditType_Result">
+                <ScalarProperty Name="AuditType_id" ColumnName="AuditType_id" />
+                <ScalarProperty Name="AuditType" ColumnName="AuditType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getQuestionListForC" FunctionName="Audire_dbModel.Store.sp_getQuestionListForC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getQuestionListForC_Result">
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="section_name" ColumnName="section_name" />
+                <ScalarProperty Name="sub_section_name" ColumnName="sub_section_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getProductListforEdit" FunctionName="Audire_dbModel.Store.sp_getProductListforEdit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getProductListforEdit_Result">
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="region_name" ColumnName="region_name" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="country_name" ColumnName="country_name" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+                <ScalarProperty Name="line_name" ColumnName="line_name" />
+                <ScalarProperty Name="line_code" ColumnName="line_code" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getProcessEmpMapping" FunctionName="Audire_dbModel.Store.sp_getProcessEmpMapping" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getProcessEmpMapping_Result">
+                <ScalarProperty Name="process_id" ColumnName="process_id" />
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="emp_full_name" ColumnName="emp_full_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_InsAuditPlan" FunctionName="Audire_dbModel.Store.sp_InsAuditPlan" />
+          <FunctionImportMapping FunctionImportName="sp_InsQuestion" FunctionName="Audire_dbModel.Store.sp_InsQuestion" />
+          <FunctionImportMapping FunctionImportName="GetMaxAuditId" FunctionName="Audire_dbModel.Store.GetMaxAuditId" />
+          <FunctionImportMapping FunctionImportName="sp_getUserList" FunctionName="Audire_dbModel.Store.sp_getUserList">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getUserList_Result">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="passwd" ColumnName="passwd" />
+                <ScalarProperty Name="emp_full_name" ColumnName="emp_full_name" />
+                <ScalarProperty Name="display_name_flag" ColumnName="display_name_flag" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="global_admin_flag" ColumnName="global_admin_flag" />
+                <ScalarProperty Name="site_admin_flag" ColumnName="site_admin_flag" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="emp_first_name" ColumnName="emp_first_name" />
+                <ScalarProperty Name="emp_last_name" ColumnName="emp_last_name" />
+                <ScalarProperty Name="Admin_Type" ColumnName="Admin_Type" />
+                <ScalarProperty Name="process_id" ColumnName="process_id" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="module" ColumnName="module" />
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="reporting_manager" ColumnName="reporting_manager" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getAuditScore" FunctionName="Audire_dbModel.Store.sp_getAuditScore" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getAuditScore_Result">
+                <ScalarProperty Name="Audit_Type" ColumnName="Audit_Type" />
+                <ScalarProperty Name="Audit_Type_id" ColumnName="Audit_Type_id" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="last_date" ColumnName="last_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getDashboardDetail" FunctionName="Audire_dbModel.Store.sp_getDashboardDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getDashboardDetail_Result">
+                <ScalarProperty Name="open_NC" ColumnName="open_NC" />
+                <ScalarProperty Name="closed_NC" ColumnName="closed_NC" />
+                <ScalarProperty Name="monthly_score" ColumnName="monthly_score" />
+                <ScalarProperty Name="tot_audit" ColumnName="tot_audit" />
+                <ScalarProperty Name="pending" ColumnName="pending" />
+                <ScalarProperty Name="quarterly_score" ColumnName="quarterly_score" />
+                <ScalarProperty Name="halfyearly_score" ColumnName="halfyearly_score" />
+                <ScalarProperty Name="yearly_score" ColumnName="yearly_score" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getAllTasks" FunctionName="Audire_dbModel.Store.sp_getAllTasks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getAllTasks_Result">
+                <ScalarProperty Name="audit_id" ColumnName="audit_id" />
+                <ScalarProperty Name="Audit_Type" ColumnName="Audit_Type" />
+                <ScalarProperty Name="module" ColumnName="module" />
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+                <ScalarProperty Name="audit_performed_date" ColumnName="audit_performed_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getdropdowndetail" FunctionName="Audire_dbModel.Store.sp_getdropdowndetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getdropdowndetail_Result">
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="AuditType_id" ColumnName="AuditType_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getDashboardGraph" FunctionName="Audire_dbModel.Store.sp_getDashboardGraph">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getDashboardGraph_Result">
+                <ScalarProperty Name="audit_date" ColumnName="audit_date" />
+                <ScalarProperty Name="audit_count" ColumnName="audit_count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getPendingAudits" FunctionName="Audire_dbModel.Store.sp_getPendingAudits">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getPendingAudits_Result">
+                <ScalarProperty Name="planned_date" ColumnName="planned_date" />
+                <ScalarProperty Name="week_num" ColumnName="week_num" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="Audit_type_id" ColumnName="Audit_type_id" />
+                <ScalarProperty Name="Audit_Type" ColumnName="Audit_Type" />
+                <ScalarProperty Name="color_code" ColumnName="color_code" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getAuditReport" FunctionName="Audire_dbModel.Store.sp_getAuditReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getAuditReport_Result">
+                <ScalarProperty Name="audit_id" ColumnName="audit_id" />
+                <ScalarProperty Name="Audit_number" ColumnName="Audit_number" />
+                <ScalarProperty Name="audit_performed_by" ColumnName="audit_performed_by" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="audit_performed_date" ColumnName="audit_performed_date" />
+                <ScalarProperty Name="emp_full_name" ColumnName="emp_full_name" />
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getCAPAReport" FunctionName="Audire_dbModel.Store.sp_getCAPAReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getCAPAReport_Result">
+                <ScalarProperty Name="Audit_number" ColumnName="Audit_number" />
+                <ScalarProperty Name="audit_id" ColumnName="audit_id" />
+                <ScalarProperty Name="confirm_comment" ColumnName="confirm_comment" />
+                <ScalarProperty Name="report_date" ColumnName="report_date" />
+                <ScalarProperty Name="Containment" ColumnName="Containment" />
+                <ScalarProperty Name="pa_date" ColumnName="pa_date" />
+                <ScalarProperty Name="Final_Status" ColumnName="Final_Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_saveConfirmAudit" FunctionName="Audire_dbModel.Store.sp_saveConfirmAudit" />
+          <EntitySetMapping Name="tbl_permissions">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_permissions">
+              <MappingFragment StoreEntitySet="tbl_permissions">
+                <ScalarProperty Name="Permission" ColumnName="Permission" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_role_master">
+            <EntityTypeMapping TypeName="Audire_dbModel.tbl_role_master">
+              <MappingFragment StoreEntitySet="tbl_role_master">
+                <ScalarProperty Name="Role_Access" ColumnName="Role_Access" />
+                <ScalarProperty Name="Role_name" ColumnName="Role_name" />
+                <ScalarProperty Name="Role_id" ColumnName="Role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_getRoleDetails" FunctionName="Audire_dbModel.Store.sp_getRoleDetails" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getRoleDetails_Result" >
+                <ScalarProperty Name="Role_id" ColumnName="Role_id" />
+                <ScalarProperty Name="Role_name" ColumnName="Role_name" />
+                <ScalarProperty Name="Role_Access" ColumnName="Role_Access" />
+                <ScalarProperty Name="users" ColumnName="users" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetPlanConsolidated" FunctionName="Audire_dbModel.Store.sp_GetPlanConsolidated">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_GetPlanConsolidated_Result">
+                <ScalarProperty Name="TotalPlan" ColumnName="TotalPlan" />
+                <ScalarProperty Name="LMTotalPlan" ColumnName="LMTotalPlan" />
+                <ScalarProperty Name="TotalPlanRate" ColumnName="TotalPlanRate" />
+                <ScalarProperty Name="TotalPlanCompleted" ColumnName="TotalPlanCompleted" />
+                <ScalarProperty Name="LMTotalCompleted" ColumnName="LMTotalCompleted" />
+                <ScalarProperty Name="TotalCompletedRate" ColumnName="TotalCompletedRate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getConsolidatedAuditStatus" FunctionName="Audire_dbModel.Store.sp_getConsolidatedAuditStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Audire_dbModel.sp_getConsolidatedAuditStatus_Result">
+                <ScalarProperty Name="module" ColumnName="module" />
+                <ScalarProperty Name="Audit_Type" ColumnName="Audit_Type" />
+                <ScalarProperty Name="audit_performed_date" ColumnName="audit_performed_date" />
+                <ScalarProperty Name="emp_full_name" ColumnName="emp_full_name" />
+                <ScalarProperty Name="Audit_number" ColumnName="Audit_number" />
+                <ScalarProperty Name="audit_id" ColumnName="audit_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

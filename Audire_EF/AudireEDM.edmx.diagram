@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c5b4eb9354e43e2aea4e520461fbcc0" Name="Diagram1" ZoomLevel="56">
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_country_master" Width="1.5" PointX="7.3827757515864327" PointY="4.8911841236479505" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_location_master" Width="1.5" PointX="0.50973679149045459" PointY="27.627542121162424" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_Module_master" Width="1.5" PointX="9.9979101242487829" PointY="5.0569125884477577" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_region_master" Width="1.5" PointX="0.85670851769703837" PointY="27.019339559143102" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_line_master" Width="1.5" PointX="1.3850278991204816" PointY="22.652785654483729" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_user_master" Width="1.5" PointX="6.4213922612468668" PointY="24.893032741217425" />
+        <EntityTypeShape EntityType="Audire_dbModel.Menu_List" Width="1.5" PointX="4.3137966824294054" PointY="4.69107422451073" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_audit_plan" Width="1.5" PointX="3.6457347030033054" PointY="3.0474332287197154" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_audit_type" Width="1.5" PointX="5.6027522299451533" PointY="23.480088989939581" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_AuditResult" Width="1.5" PointX="11.799878043960723" PointY="23.230824317424943" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_distribution_list" Width="1.5" PointX="2.6215773125279589" PointY="8.45057483410955" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_group_master" Width="1.5" PointX="3.7114794290212352" PointY="11.153709521123073" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_group_members" Width="1.5" PointX="0.44529176337890874" PointY="7.0414915564663207" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_line_product_relationship" Width="1.5" PointX="6.9431995800431814" PointY="13.765751040431555" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_local_answers" Width="1.5" PointX="2.8530934578055023" PointY="25.022005629270339" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_local_answers_bak" Width="1.5" PointX="3.0099455486098048" PointY="15.020144886812263" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_local_question_master" Width="1.5" PointX="2.0767270522549408" PointY="19.813153142022507" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_process_master" Width="1.5" PointX="10.097802382939403" PointY="0.36239525692648966" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_product_master" Width="1.5" PointX="3.0518143619651976" PointY="10.780873393072222" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_question_master" Width="1.5" PointX="5.3116113214341976" PointY="26.7099796508951" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_section_master" Width="1.5" PointX="4.3761564494930933" PointY="29.431265844698654" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_sub_section_master" Width="1.5" PointX="8.28621344654179" PointY="7.4249491875176084" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_permissions" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Audire_dbModel.tbl_role_master" Width="1.5" PointX="0.75" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

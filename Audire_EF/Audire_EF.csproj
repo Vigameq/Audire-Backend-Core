@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A00AA14C-96E1-434E-841F-B28A8557A3D3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Audire_EF</RootNamespace>
+    <AssemblyName>Audire_EF</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AudireEDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AudireEDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AudireEDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AudireEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AudireEDM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu_List.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sp_DelPart_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getAllTasks_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetAuditPlan_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getAuditReport_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getAuditScore_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getAuditType_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getCAPAReport_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getConsolidatedAuditStatus_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetCountryList_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getDashboardDetail_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getDashboardGraph_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getdropdowndetail_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetLinesForLocation_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetLocationList_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetMailDetailsForReport_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetModuleList_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getMonthlyScore_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getOpenTasks_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getPendingAudits_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetPlanConsolidated_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getProcessEmpMapping_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetProcessList_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getProductListforEdit_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetProductsForLine_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getQuestionListForC_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getQuestionList_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetRegionList_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getRoleDetails_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getUserList_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_UserLogin_Result.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AuditResult.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_audit_plan.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_audit_type.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_country_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_distribution_list.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_group_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_group_members.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_line_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_line_product_relationship.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_local_answers.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_local_answers_bak.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_local_question_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_location_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Module_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_permissions.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_process_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_product_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_question_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_region_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_role_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_section_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_sub_section_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_user_master.cs">
+      <DependentUpon>AudireEDM.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="AudireEDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AudireEDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AudireEDM.edmx.diagram">
+      <DependentUpon>AudireEDM.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AudireEDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AudireEDM.edmx</DependentUpon>
+      <LastGenOutput>AudireEDM.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AudireEDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AudireEDM.edmx</DependentUpon>
+      <LastGenOutput>AudireEDM.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
